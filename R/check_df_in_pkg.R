@@ -27,7 +27,6 @@ check_df_in_pkg <- function(pkg) {
     check_inst_pkg(pkg = pkg)
   }
   pkg_obj <- ls(paste("package", pkg, sep = ":"))
-  #
   is_df <- purrr::map_lgl(.x = pkg_obj,
     ~ is.data.frame(get(x = .x,
       envir = as.environment(
