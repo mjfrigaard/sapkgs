@@ -1,0 +1,39 @@
+Type: Package
+Package: debugApp
+Title: A Shiny App-Package with various debugging techniques
+Version: 0.1.0
+Author: Martin Frigaard
+Maintainer: Martin Frigaard <mjfrigaard@pm.me>
+Description: A Shiny app-package developed to demonstrate debugging.
+License: MIT + file LICENSE
+Depends: 
+    R (>= 3.5),
+    NHANES,
+    palmerpenguins
+Imports: 
+    cli,
+    dplyr,
+    ggplot2,
+    glue,
+    janitor,
+    pkgload,
+    purrr,
+    rlang,
+    rsconnect,
+    shiny,
+    snakecase,
+    stringr,
+    tibble,
+    tidyr,
+    zeallot
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.0
