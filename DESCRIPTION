@@ -1,10 +1,11 @@
 Type: Package
-Package: debugApp
-Title: A Shiny App-Package with various debugging techniques
+Package: sapkgs
+Title: Shiny Application-Packages (repo)
 Version: 0.1.0
 Author: Martin Frigaard
 Maintainer: Martin Frigaard <mjfrigaard@pm.me>
-Description: A Shiny app-package developed to demonstrate debugging.
+Description: Shiny App-Packages with various debugging, testing, and package 
+  development techniques
 License: MIT + file LICENSE
 Depends: 
     R (>= 3.5),
