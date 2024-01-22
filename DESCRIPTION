@@ -1,33 +1,26 @@
 Type: Package
-Package: debugApp
-Title: A Shiny App-Package with various debugging techniques
+Package: utap
+Title: Unit Test Your Shiny App Package
 Version: 0.1.0
 Author: Martin Frigaard
 Maintainer: Martin Frigaard <mjfrigaard@pm.me>
-Description: A Shiny app-package developed to demonstrate debugging.
+Description: This shiny app was developed as a package using devtools and
+    usethis.
 License: MIT + file LICENSE
+URL: https://mjfrigaard.github.io/utap/
 Depends: 
-    R (>= 3.5),
-    NHANES,
-    palmerpenguins
+    R (>= 3.5)
 Imports: 
     cli,
     dplyr,
-    ggplot2,
-    glue,
     janitor,
-    pkgload,
     purrr,
-    rlang,
-    rsconnect,
     shiny,
-    snakecase,
-    stringr,
-    tibble,
-    tidyr,
-    zeallot
+    tibble
 Suggests: 
     knitr,
+    lobstr,
+    pkgload,
     rmarkdown,
     testthat
 VignetteBuilder: 

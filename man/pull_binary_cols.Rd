@@ -16,7 +16,8 @@ a named character vector of binary column names
 Binary app inputs
 }
 \examples{
+require(palmerpenguins)
+require(dplyr)
 pull_binary_cols(palmerpenguins::penguins)
 pull_binary_cols(dplyr::starwars)
-
 }

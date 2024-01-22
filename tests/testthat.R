@@ -1,3 +1,3 @@
 library(testthat)
-library(debugApp)
-test_check("debugApp")
+library(utap)
+test_check("utap")

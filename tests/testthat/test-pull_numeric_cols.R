@@ -1,6 +1,6 @@
 testthat::test_that("pull_numeric_cols() app_inputs_test", {
 
-  app_inputs_test <- readRDS(testthat::test_path("fixtures", "col_types.rds"))
+  app_inputs_test <- readRDS(testthat::test_path("fixtures", "pull_cols_test.rds"))
 
   # test numeric columns
   testthat::expect_equal(
