@@ -144,32 +144,32 @@ test_that("make_binary_vec() works", {
   )
   # test logical
   expect_equal(
-    object = dplyr::select(binary_vec_test, where(is.logical)) |>
+    object = select(binary_vec_test, where(is.logical)) |>
       make_binary_vec(type = "log"),
     expected = purrr::set_names(c("log", "log_na"))
   )
   # test integer
   expect_equal(
-    object = dplyr::select(binary_vec_test, where(is.integer)) |>
+    object = select(binary_vec_test, where(is.integer)) |>
       make_binary_vec(type = "int"),
     expected = purrr::set_names(c("int", "int_na"))
   )
   # test character
   expect_equal(
-    object = dplyr::select(binary_vec_test, where(is.character)) |>
+    object = select(binary_vec_test, where(is.character)) |>
       make_binary_vec(type = "chr"),
     expected = purrr::set_names(c("chr", "chr_na"))
   )
   # test factor
   expect_equal(
-    object = dplyr::select(binary_vec_test,
+    object = select(binary_vec_test,
       dplyr::all_of(c("fct", "fct_na"))) |>
       make_binary_vec(type = "fct"),
     expected = purrr::set_names(c("fct", "fct_na"))
   )
   # test ordered
   expect_equal(
-    object = dplyr::select(binary_vec_test,
+    object = select(binary_vec_test,
       dplyr::all_of(c("ord", "ord_na"))) |>
       make_binary_vec(type = "fct"),
     expected = purrr::set_names(c("ord", "ord_na"))
@@ -178,7 +178,7 @@ test_that("make_binary_vec() works", {
 
 testthat::test_that("pull_binary_cols() works", {
   app_inputs_test <-
-    readRDS(testthat::test_path("fixtures", "pull_cols_test.rds"))
+    readRDS(testthat::test_path("fixtures", "col_types.rds"))
   expect_equal(
     object = pull_binary_cols(app_inputs_test),
     expected = c(log_bin_na = "log_bin_na",

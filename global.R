@@ -1,3 +1,3 @@
 install.packages('rsconnect')
-pkgs <- pkgs <- rsconnect::appDependencies()$Package
-install.packages(pkgs)
+pkgs <- rsconnect:::appDependencies()[['Package']]
+install.packages(pkgs, quiet = TRUE)

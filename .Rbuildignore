@@ -2,9 +2,3 @@
 ^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-_\.new\.png$
-^data-raw$
-^_pkgdown\.yml$
-^docs$
-^pkgdown$
-^\.github$

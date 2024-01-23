@@ -1,9 +1,7 @@
-options(repos = "https://cran.rstudio.com/")
+tscmt <- function(test, msg) {
+  cat("\n", glue::glue("  {test}: {msg}"), "\n")
+}
 
-# log_maker(2)
-# log_maker(2, TRUE)
-# log_maker(3)
-# log_maker(3, TRUE)
 log_maker <- function(size, missing = FALSE) {
   if (size <= 2 & isTRUE(missing)) {
     as.vector(c(TRUE, NA), mode = "logical")
@@ -15,14 +13,11 @@ log_maker <- function(size, missing = FALSE) {
     rep(c(TRUE, FALSE), length.out = size)
   }
 }
+# log_maker(2)
+# log_maker(2, TRUE)
+# log_maker(3)
+# log_maker(3, TRUE)
 
-
-# int_maker(2)
-# int_maker(2, TRUE)
-# int_maker(3)
-# int_maker(3, TRUE)
-# int_maker(5, TRUE)
-# int_maker(10, TRUE)
 int_maker <- function(size, missing = FALSE) {
   if (size < 3 & isTRUE(missing)) {
     int_raw <- c(as.integer(exp(size)), NA_real_)
@@ -44,13 +39,13 @@ int_maker <- function(size, missing = FALSE) {
     return(int_vec)
   }
 }
+# int_maker(2)
+# int_maker(2, TRUE)
+# int_maker(3)
+# int_maker(3, TRUE)
+# int_maker(5, TRUE)
+# int_maker(10, TRUE)
 
-# dbl_maker(2)
-# dbl_maker(2, TRUE)
-# dbl_maker(3)
-# dbl_maker(3, TRUE)
-# dbl_maker(10)
-# dbl_maker(10, TRUE)
 dbl_maker <- function(size, missing = FALSE) {
   if (size < 3 & isTRUE(missing)) {
     dbl_raw <- c(as.double(log(size)), NA_real_)
@@ -72,12 +67,13 @@ dbl_maker <- function(size, missing = FALSE) {
     return(dbl_vec)
   }
 }
+# dbl_maker(2)
+# dbl_maker(2, TRUE)
+# dbl_maker(3)
+# dbl_maker(3, TRUE)
+# dbl_maker(10)
+# dbl_maker(10, TRUE)
 
-# chr_maker(size = 2, lvls = 2, TRUE)
-# chr_maker(size = 2, lvls = 1, TRUE)
-# chr_maker(size = 3, lvls = 3, FALSE)
-# chr_maker(size = 3, lvls = 3, TRUE)
-# chr_maker(size = 10, lvls = 6, TRUE)
 chr_maker <- function(size, lvls = size/2, missing = FALSE) {
   if (size < lvls) {
     lvls <- size - 1
@@ -103,13 +99,12 @@ chr_maker <- function(size, lvls = size/2, missing = FALSE) {
   }
   return(chr_vec)
 }
+# chr_maker(size = 2, lvls = 2, TRUE)
+# chr_maker(size = 2, lvls = 1, TRUE)
+# chr_maker(size = 3, lvls = 3, FALSE)
+# chr_maker(size = 3, lvls = 3, TRUE)
+# chr_maker(size = 10, lvls = 6, TRUE)
 
-
-# fct_maker(size = 5, lvls = 6, missing = TRUE)
-# fct_maker(size = 5, missing = TRUE)
-# fct_maker(size = 10, lvls = 9, missing = TRUE)
-# fct_maker(size = 10, lvls = 5, missing = FALSE)
-# fct_maker(size = 10, lvls = 5, missing = FALSE)
 fct_maker <- function(size, lvls = size/2, missing = FALSE) {
   if (isTRUE(missing)) {
     levs <- paste0("group ", as.integer(1:lvls))
@@ -127,13 +122,12 @@ fct_maker <- function(size, lvls = size/2, missing = FALSE) {
   }
   return(fct_vec)
 }
+# fct_maker(size = 5, lvls = 6, missing = TRUE)
+fct_maker(size = 5, missing = TRUE)
+# fct_maker(size = 10, lvls = 5, missing = FALSE)
+fct_maker(size = 10, lvls = 9, missing = TRUE)
+# fct_maker(size = 10, lvls = 5, missing = FALSE)
 
-
-# ord_maker(size = 5, lvls = 6, missing = TRUE)
-# ord_maker(size = 10, lvls = 5, missing = FALSE)
-# ord_maker(size = 10, missing = FALSE)
-# ord_maker(size = 10, lvls = 5, missing = TRUE)
-# ord_maker(size = 10, lvls = 5, missing = FALSE)
 ord_maker <- function(size, lvls = size/2, missing = FALSE) {
   if (isTRUE(missing)) {
     levs <- paste0("level ", as.integer(1:lvls))
@@ -151,19 +145,12 @@ ord_maker <- function(size, lvls = size/2, missing = FALSE) {
   }
   return(ord_vec)
 }
+# ord_maker(size = 5, lvls = 6, missing = TRUE)
+# ord_maker(size = 10, lvls = 5, missing = FALSE)
+ord_maker(size = 10, missing = FALSE)
+# ord_maker(size = 10, lvls = 5, missing = TRUE)
+# ord_maker(size = 10, lvls = 5, missing = FALSE)
 
-
-
-# bin_maker(type = "log", size = 2)
-# bin_maker(type = "log", size = 2, missing = TRUE)
-# bin_maker(type = "int", size = 10)
-# bin_maker(type = "int", size = 10, missing = TRUE)
-# bin_maker(type = "chr", size = 10)
-# bin_maker(type = "chr", size = 10, missing = TRUE)
-# bin_maker(type = "fct", size = 10)
-# bin_maker(type = "fct", size = 10, missing = TRUE)
-# bin_maker(type = "ord", size = 10)
-# bin_maker(type = "ord", size = 10, missing = TRUE)
 bin_maker <- function(bin_type, size, missing = FALSE) {
   if (size < 3) {
     size <- 3
@@ -232,10 +219,17 @@ bin_maker <- function(bin_type, size, missing = FALSE) {
     )
   }
 }
+# bin_maker(type = "log", size = 2)
+# bin_maker(type = "log", size = 2, missing = TRUE)
+# bin_maker(type = "int", size = 10)
+# bin_maker(type = "int", size = 10, missing = TRUE)
+# bin_maker(type = "chr", size = 10)
+# bin_maker(type = "chr", size = 10, missing = TRUE)
+# bin_maker(type = "fct", size = 10)
+# bin_maker(type = "fct", size = 10, missing = TRUE)
+# bin_maker(type = "ord", size = 10)
+# bin_maker(type = "ord", size = 10, missing = TRUE)
 
-#' facet_maker(type = "chr", size = 10, lvls = 4, missing = TRUE)
-#' facet_maker(type = "fct", size = 10, lvls = 4, missing = TRUE)
-#' facet_maker(type = "ord", size = 6, lvls = 5, missing = FALSE)
 facet_maker <- function(facet_type, size, lvls, missing = FALSE) {
   if (isTRUE(missing)) {
     switch(facet_type,
@@ -251,51 +245,51 @@ facet_maker <- function(facet_type, size, lvls, missing = FALSE) {
     )
   }
 }
+# facet_maker(type = "chr", size = 10, lvls = 4, missing = TRUE)
+# facet_maker(type = "fct", size = 10, lvls = 4, missing = TRUE)
+# facet_maker(type = "ord", size = 6, lvls = 5, missing = FALSE)
+col_maker <- function(col_type, size, ..., missing) {
 
-# col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
-#   size = 6, missing = FALSE)
-# col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
-#   size = 10, missing = TRUE, lvls = 4)
-# col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
-#   size = 10, missing = TRUE, lvls = 2)
-# col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
-#   size = 6, missing = FALSE)
-col_maker <- function(col_type, size, missing, ...) {
-  make_cols <- function(col_type, size, missing, ...) {
+  make_cols <- function(col_type, size, ..., missing) {
     switch(col_type,
-      log = log_maker(size = size, missing = missing),
-      int = int_maker(size = size, missing = missing),
-      dbl = dbl_maker(size = size, missing = missing),
-      chr = chr_maker(size = size, missing = missing, ...),
-      fct = fct_maker(size = size, missing = missing, ...),
-      ord = ord_maker(size = size, missing = missing, ...)
-    )
-  }
+     log = log_maker(size = size, missing = missing),
+     int = int_maker(size = size, missing = missing),
+     dbl = dbl_maker(size = size, missing = missing),
+     chr = chr_maker(size = size, missing = missing, ...),
+     fct = fct_maker(size = size, missing = missing, ...),
+     ord = ord_maker(size = size, missing = missing, ...))
+    }
 
   cols_list <- purrr::map(
     .x = col_type,
     .f = make_cols,
     size = size,
     missing = missing,
-    ...
-  )
+    ...)
 
   col_nms <- paste0(janitor::make_clean_names(col_type), "_var")
 
   cols_tbl_list <- purrr::map(
     .x = cols_list,
-    .f = tibble::as_tibble
-  )
+    .f = tibble::as_tibble)
 
   cols_tbl <- purrr::list_cbind(cols_tbl_list, size = size) |>
-    suppressMessages() |>
-    suppressWarnings()
+                  suppressMessages() |>
+                  suppressWarnings()
 
   cols_tbl <- purrr::set_names(cols_tbl, col_nms)
 
   return(cols_tbl)
+
 }
 
-
+col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
+  size = 6, missing = FALSE)
+col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
+  size = 10, missing = TRUE, lvls = 4)
+col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
+  size = 10, missing = TRUE, lvls = 2)
+col_maker(col_type = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),
+  size = 6, missing = FALSE)
 
 

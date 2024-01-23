@@ -209,7 +209,7 @@ testthat::test_that("pull_facet_cols() ordinal cols", {
 
 testthat::test_that("pull_facet_cols() works", {
   app_inputs_test <-
-    readRDS(testthat::test_path("fixtures", "pull_cols_test.rds"))
+    readRDS(testthat::test_path("fixtures", "col_types.rds"))
   # remove binary columns
   expect_equal(
     object = dplyr::select(app_inputs_test,!dplyr::contains("bin")) |> pull_facet_cols(),
