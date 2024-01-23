@@ -28,8 +28,6 @@ In this case, I'm expecting `pull_numeric_cols()` to be passed a `data.frame` or
 
 `pull_[type]_cols()` functions would also come in handy for shiny apps with visualizations. For example, a `pull_[type]_cols()` function could be used to identify columns satisfying specific graph aesthetics or layers, such as columns with binary values (for the `color` aesthetic) or columns with a specific number of categories (for facets).
 
-
-
 ###  Binary columns (example)
 
 Creating unit tests usually involves three steps: 1) add any data or values you will need to run the test to the top of the test “scope” or “execution environment”, 2) create the `object`, which is the output or behavior created by the test function 3) define the `expected` value, object, or behavior of the test function. 
