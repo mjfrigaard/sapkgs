@@ -4,7 +4,7 @@
 \name{tsap-package}
 \alias{tsap}
 \alias{tsap-package}
-\title{tsap: Test Server App Package}
+\title{tsap: Test Server App Package (tsap)}
 \description{
 A Shiny app-package developed to demonstrate testing with testthat and Shiny's testServer() function.
 }
