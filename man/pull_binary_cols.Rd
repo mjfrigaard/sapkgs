@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_binary_cols.R
 \name{pull_binary_cols}
 \alias{pull_binary_cols}
-\title{Binary app inputs}
+\title{Pull binary app inputs}
 \usage{
 pull_binary_cols(df)
 }
@@ -13,7 +13,7 @@ pull_binary_cols(df)
 a named character vector of binary column names
 }
 \description{
-Binary app inputs
+Pull binary app inputs
 }
 \examples{
 require(palmerpenguins)

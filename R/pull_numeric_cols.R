@@ -3,9 +3,8 @@
 #' @param df a `data.frame` or `tibble`
 #'
 #' @return a named character vector of integer and double column names
-#' @export pull_numeric_cols
 #'
-#' @importFrom purrr compact list_c set_names
+#' @export pull_numeric_cols
 #'
 #' @examples
 #' require(palmerpenguins)
@@ -22,14 +21,14 @@ pull_numeric_cols <- function(df) {
   # vector
   bins_facets <- purrr::list_c(bins_facets_list)
   # vector of doubles
-  dbls <- select_by_class(df = df, class = "dbl", return_tbl = FALSE)
+  dbls <- select_class(df = df, class = "double", return_tbl = FALSE)
   # vector of integers
-  ints <- select_by_class(df = df, class = "int", return_tbl = FALSE)
+  ints <- select_class(df = df, class = "integer", return_tbl = FALSE)
   # assemble
   all_dbls_ints_list <- list(dbls, ints)
-  # # reduce
+  # reduce
   dbls_ints_list <- purrr::compact(all_dbls_ints_list)
-  # # vector
+  # vector
   dbls_ints <- purrr::list_c(dbls_ints_list)
   # reduce
   nums_nms <- dbls_ints[dbls_ints %nin% bins_facets]

@@ -1,5 +1,5 @@
 testthat::test_that("pull_cat_cols() pull_cols_test data", {
-
+# fixture ----
   app_inputs_test <- readRDS(testthat::test_path("fixtures", "pull_cols_test.rds"))
 
   testthat::expect_equal(

@@ -1,11 +1,11 @@
 Type: Package
 Package: utap
-Title: Unit Test Your Shiny App Package
+Title: Unit Test Your Shiny App Package (utap)
 Version: 0.1.0
 Author: Martin Frigaard
 Maintainer: Martin Frigaard <mjfrigaard@pm.me>
-Description: This shiny app was developed as a package using devtools and
-    usethis.
+Description: A series of utility functions for a shiny app developed as an R 
+    package.
 License: MIT + file LICENSE
 URL: https://mjfrigaard.github.io/utap/
 Depends: 
@@ -29,4 +29,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1

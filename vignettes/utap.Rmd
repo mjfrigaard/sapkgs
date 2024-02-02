@@ -71,7 +71,7 @@ test_data <- tibble::tibble(
   log_var = log_maker(size = 6, missing = TRUE),
   int_var = int_maker(size = 6, missing = TRUE),
   dbl_var = dbl_maker(size = 6, missing = TRUE),
-  facet_var = facet_maker(
+  facet_var = cat_maker(
     facet_type = "fct",
     lvls = 4, missing = TRUE,
     size = 6

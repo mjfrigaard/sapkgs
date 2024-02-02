@@ -3,7 +3,7 @@
 #' @param size how many rows?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' log_maker(2)
@@ -27,7 +27,7 @@ log_maker <- function(size, missing = FALSE) {
 #' @param size how many rows?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' int_maker(2)
@@ -63,7 +63,7 @@ int_maker <- function(size, missing = FALSE) {
 #' @param size how many rows?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' dbl_maker(2)
@@ -100,7 +100,7 @@ dbl_maker <- function(size, missing = FALSE) {
 #' @param lvls how many levels?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' chr_maker(size = 2, lvls = 2, TRUE)
@@ -140,7 +140,7 @@ chr_maker <- function(size, lvls = size / 2, missing = FALSE) {
 #' @param lvls how many levels?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' fct_maker(size = 5, lvls = 6, missing = TRUE)
@@ -172,7 +172,7 @@ fct_maker <- function(size, lvls = size / 2, missing = FALSE) {
 #' @param lvls how many levels?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' ord_maker(size = 5, lvls = 6, missing = TRUE)
@@ -204,7 +204,7 @@ ord_maker <- function(size, lvls = size / 2, missing = FALSE) {
 #' @param size how many rows?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' bin_maker(type = "log", size = 2)
@@ -286,28 +286,28 @@ bin_maker <- function(bin_type, size, missing = FALSE) {
   }
 }
 
-#' Facet column maker
+#' Categorical column maker
 #'
-#' @param facet_type facet column type
+#' @param type column type ('chr', 'fct', or 'ord')
 #' @param size how many rows?
 #' @param lvls how many levels?
 #' @param missing logical, include missing?
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
-#' facet_maker(type = "chr", size = 10, lvls = 4, missing = TRUE)
-#' facet_maker(type = "fct", size = 10, lvls = 4, missing = TRUE)
-#' facet_maker(type = "ord", size = 6, lvls = 5, missing = FALSE)
-facet_maker <- function(facet_type, size, lvls, missing = FALSE) {
+#' cat_maker(type = "chr", size = 10, lvls = 4, missing = TRUE)
+#' cat_maker(type = "fct", size = 10, lvls = 4, missing = TRUE)
+#' cat_maker(type = "ord", size = 6, lvls = 5, missing = FALSE)
+cat_maker <- function(type, size, lvls, missing = FALSE) {
   if (isTRUE(missing)) {
-    switch(facet_type,
+    switch(type,
       chr = chr_maker(size = size, lvls = lvls, missing = TRUE),
       fct = fct_maker(size = size, lvls = lvls, missing = TRUE),
       ord = ord_maker(size = size, lvls = lvls, missing = TRUE)
     )
   } else {
-    switch(facet_type,
+    switch(type,
       chr = chr_maker(size = size, lvls = lvls, missing = FALSE),
       fct = fct_maker(size = size, lvls = lvls, missing = FALSE),
       ord = ord_maker(size = size, lvls = lvls, missing = FALSE)
@@ -322,7 +322,7 @@ facet_maker <- function(facet_type, size, lvls, missing = FALSE) {
 #' @param missing logical, include missing?
 #' @param ... additional arguments passed to `_maker` functions
 #'
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' col_maker(col_types = c("log", "log", "dbl", "dbl", "fct", "ord", "chr"),

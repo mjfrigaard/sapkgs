@@ -4,9 +4,9 @@
 \name{utap-package}
 \alias{utap}
 \alias{utap-package}
-\title{utap: Unit Test Your Shiny App Package}
+\title{utap: Unit Test Your Shiny App Package (utap)}
 \description{
-This shiny app was developed as a package using devtools and usethis.
+A series of utility functions for a shiny app developed as an R package.
 }
 \seealso{
 Useful links:

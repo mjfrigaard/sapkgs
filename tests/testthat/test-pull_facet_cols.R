@@ -163,13 +163,13 @@ testthat::test_that("pull_facet_cols() character cols", {
   expect_equal(
     object = pull_facet_cols(
       df = tibble::tibble(
-        facet_na = facet_maker(
+        facet_na = cat_maker(
           facet_type = "chr", size = 10, lvls = 4, missing = TRUE),
-        facet = facet_maker(
+        facet = cat_maker(
           facet_type = "fct", size = 10, lvls = 4, missing = FALSE),
-        no_facet_na = facet_maker(
+        no_facet_na = cat_maker(
           facet_type = "chr", size = 10, lvls = 5, missing = TRUE),
-        no_facet = facet_maker(
+        no_facet = cat_maker(
           facet_type = "fct", size = 10, lvls = 5, missing = FALSE))),
     expected = purrr::set_names(c("facet_na", "facet"))
   )
@@ -179,13 +179,13 @@ testthat::test_that("pull_facet_cols() factor cols", {
   expect_equal(
     object = pull_facet_cols(df =
       tibble::tibble(
-        facet = facet_maker(
+        facet = cat_maker(
           facet_type = "fct", size = 10, lvls = 4, missing = FALSE),
-        facet_na = facet_maker(
+        facet_na = cat_maker(
           facet_type = "fct", size = 10, lvls = 4, missing = TRUE),
-        no_facet = facet_maker(
+        no_facet = cat_maker(
           facet_type = "fct", size = 10, lvls = 5, missing = FALSE),
-        no_facet_na = facet_maker(
+        no_facet_na = cat_maker(
           facet_type = "fct", size = 10, lvls = 5, missing = TRUE))),
     expected = purrr::set_names(c("facet", "facet_na"))
   )
@@ -195,13 +195,13 @@ testthat::test_that("pull_facet_cols() ordinal cols", {
   expect_equal(
     object = pull_facet_cols(
       df = tibble::tibble(
-        facet = facet_maker(
+        facet = cat_maker(
           facet_type = "ord", size = 10, lvls = 4, missing = FALSE),
-        facet_na = facet_maker(
+        facet_na = cat_maker(
           facet_type = "ord", size = 10, lvls = 4, missing = TRUE),
-        no_facet = facet_maker(
+        no_facet = cat_maker(
           facet_type = "ord", size = 10, lvls = 5, missing = FALSE),
-        no_facet_na = facet_maker(
+        no_facet_na = cat_maker(
           facet_type = "ord", size = 10, lvls = 5, missing = TRUE))),
     expected = purrr::set_names(c("facet", "facet_na"))
   )

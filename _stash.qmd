@@ -1386,20 +1386,20 @@ Duration: 0.7 s
 
 ### Facet vector tests 
 
-Similar to the `make_binary_vec()` tests, I've created a [`facet_maker()`](https://github.com/mjfrigaard/utap/blob/cf97049cb4ab5378d2d7a3b3e3f3973061c8b2d7/tests/testthat/helpers.R#L187) function to help create facet test data. 
+Similar to the `make_binary_vec()` tests, I've created a [`cat_maker()`](https://github.com/mjfrigaard/utap/blob/cf97049cb4ab5378d2d7a3b3e3f3973061c8b2d7/tests/testthat/helpers.R#L187) function to help create facet test data. 
 
 ```{r}
 #| eval: true
 #| code-fold: show 
-#| code-summary: facet_maker() helper
-facet_maker(
+#| code-summary: cat_maker() helper
+cat_maker(
   type = "ord", # type of variable
   size = 5, # length of vector
   lvls = 3, # levels
   missing = FALSE) # include missing?
 ```
 
-I'll create test data for the `facet_maker()` tests, `facet_vec_test`, and store it in the `tests/testthat/fixtures/make_facet_vec_test.R` file:
+I'll create test data for the `cat_maker()` tests, `facet_vec_test`, and store it in the `tests/testthat/fixtures/make_facet_vec_test.R` file:
 
 ```{r}
 #| eval: true
@@ -1408,20 +1408,20 @@ I'll create test data for the `facet_maker()` tests, `facet_vec_test`, and store
 #| collapse: true
 facet_vec_test <- tibble::tibble(
   # character facets
-  facet_maker(type = "chr", size = 10, lvls = 5, missing = FALSE),
-  facet_maker(type = "chr", size = 10, lvls = 5, missing = TRUE),
-  facet_maker(type = "chr", size = 10, lvls = 6, missing = FALSE),
-  facet_maker(type = "chr", size = 10, lvls = 6, missing = TRUE),
+  cat_maker(type = "chr", size = 10, lvls = 5, missing = FALSE),
+  cat_maker(type = "chr", size = 10, lvls = 5, missing = TRUE),
+  cat_maker(type = "chr", size = 10, lvls = 6, missing = FALSE),
+  cat_maker(type = "chr", size = 10, lvls = 6, missing = TRUE),
   # factor facets
-  facet_maker(type = "fct", size = 10, lvls = 5, missing = FALSE),
-  facet_maker(type = "fct", size = 10, lvls = 5, missing = TRUE),
-  facet_maker(type = "fct", size = 10, lvls = 6, missing = FALSE),
-  facet_maker(type = "fct", size = 10, lvls = 6, missing = TRUE),
+  cat_maker(type = "fct", size = 10, lvls = 5, missing = FALSE),
+  cat_maker(type = "fct", size = 10, lvls = 5, missing = TRUE),
+  cat_maker(type = "fct", size = 10, lvls = 6, missing = FALSE),
+  cat_maker(type = "fct", size = 10, lvls = 6, missing = TRUE),
   # ordered facets
-  facet_maker(type = "ord", size = 10, lvls = 5, missing = FALSE),
-  facet_maker(type = "ord", size = 10, lvls = 5, missing = TRUE),
-  facet_maker(type = "ord", size = 10, lvls = 6, missing = FALSE),
-  facet_maker(type = "ord", size = 10, lvls = 6, missing = TRUE)) |>
+  cat_maker(type = "ord", size = 10, lvls = 5, missing = FALSE),
+  cat_maker(type = "ord", size = 10, lvls = 5, missing = TRUE),
+  cat_maker(type = "ord", size = 10, lvls = 6, missing = FALSE),
+  cat_maker(type = "ord", size = 10, lvls = 6, missing = TRUE)) |>
   purrr::set_names(c("chr5", "chr5_na", "chr6", "chr6_na",
                      "fct5", "fct5_na", "fct6", "fct6_na",
                      "ord5", "ord5_na", "ord6", "ord6_na"))
@@ -1590,19 +1590,19 @@ pull_cols_test <- tibble::tibble(
                           lvls = 7, ord = TRUE),
      
      # character facets
-     chr_facet5 = facet_maker(type = "chr", size = 10,
+     chr_facet5 = cat_maker(type = "chr", size = 10,
                               lvls = 5, missing = FALSE),
-     chr_facet5_na = facet_maker(type = "chr", size = 10,
+     chr_facet5_na = cat_maker(type = "chr", size = 10,
                               lvls = 5, missing = TRUE),
      # factor facets
-     fct_facet5 = facet_maker(type = "fct", size = 10,
+     fct_facet5 = cat_maker(type = "fct", size = 10,
                               lvls = 5, missing = FALSE),
-     fct_facet5_na = facet_maker(type = "fct", size = 10,
+     fct_facet5_na = cat_maker(type = "fct", size = 10,
                               lvls = 5, missing = TRUE),
      # ordered facets
-     ord_facet5 = facet_maker(type = "ord", size = 10,
+     ord_facet5 = cat_maker(type = "ord", size = 10,
                               lvls = 5, missing = FALSE),
-     ord_facet5_na = facet_maker(type = "ord", size = 10,
+     ord_facet5_na = cat_maker(type = "ord", size = 10,
                               lvls = 5, missing = TRUE))
 dplyr::glimpse(pull_cols_test)
 ```

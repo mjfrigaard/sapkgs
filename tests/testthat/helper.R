@@ -233,10 +233,10 @@ bin_maker <- function(bin_type, size, missing = FALSE) {
   }
 }
 
-#' facet_maker(type = "chr", size = 10, lvls = 4, missing = TRUE)
-#' facet_maker(type = "fct", size = 10, lvls = 4, missing = TRUE)
-#' facet_maker(type = "ord", size = 6, lvls = 5, missing = FALSE)
-facet_maker <- function(facet_type, size, lvls, missing = FALSE) {
+#' cat_maker(type = "chr", size = 10, lvls = 4, missing = TRUE)
+#' cat_maker(type = "fct", size = 10, lvls = 4, missing = TRUE)
+#' cat_maker(type = "ord", size = 6, lvls = 5, missing = FALSE)
+cat_maker <- function(facet_type, size, lvls, missing = FALSE) {
   if (isTRUE(missing)) {
     switch(facet_type,
       chr = chr_maker(size = size, lvls = lvls, missing = TRUE),

@@ -65,29 +65,29 @@ pull_cols_test <- tibble::tibble(
 
   # 4-level ----
   # character facets
-  chr_facet4 = facet_maker(
+  chr_facet4 = cat_maker(
     facet_type = "chr", size = 10,
     lvls = 4, missing = FALSE
   ),
-  chr_facet4_na = facet_maker(
+  chr_facet4_na = cat_maker(
     facet_type = "chr", size = 10,
     lvls = 4, missing = TRUE
   ),
   # factor facets
-  fct_facet4 = facet_maker(
+  fct_facet4 = cat_maker(
     facet_type = "fct", size = 10,
     lvls = 4, missing = FALSE
   ),
-  fct_facet4_na = facet_maker(
+  fct_facet4_na = cat_maker(
     facet_type = "fct", size = 10,
     lvls = 4, missing = TRUE
   ),
   # ordered facets
-  ord_facet4 = facet_maker(
+  ord_facet4 = cat_maker(
     facet_type = "ord", size = 10,
     lvls = 4, missing = FALSE
   ),
-  ord_facet4_na = facet_maker(
+  ord_facet4_na = cat_maker(
     facet_type = "ord", size = 10,
     lvls = 4, missing = TRUE
   )

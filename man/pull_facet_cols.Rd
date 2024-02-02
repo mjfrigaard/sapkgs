@@ -2,7 +2,7 @@
 % Please edit documentation in R/pull_facet_cols.R
 \name{pull_facet_cols}
 \alias{pull_facet_cols}
-\title{Facet app inputs}
+\title{Pull facet app inputs}
 \usage{
 pull_facet_cols(df)
 }
@@ -14,7 +14,7 @@ a named character vector of factor or character column names with
 < 5 unique levels
 }
 \description{
-Facet app inputs
+Pull facet app inputs
 }
 \section{Variables to use for facets}{
 

@@ -1,7 +1,7 @@
-#' Get column types
+#' Select columns by class (tidyverse)
 #'
 #' @description
-#' Return column in data by types
+#' Return columns in data by class
 #'
 #' @param df a `data.frame` or `tibble`
 #' @param return_tbl logical, return tibble (`TRUE`) or named vector (`FALSE`)
@@ -18,9 +18,6 @@
 #' @return named vector or `tibble` of columns matching the `type` (empty vector or
 #' `tibble` if no columns of specified type exist)
 #'
-#' @export
-#'
-#'
 #' @examples
 #' select_by_class(dplyr::starwars, class = "chr")
 #' select_by_class(dplyr::starwars, class = "chr", return_tbl = FALSE)
@@ -32,6 +29,13 @@ select_by_class <- function(df, class, return_tbl = TRUE) {
 
   select_column_class <- function(df, class) {
 
+    cl <- unique(class)
+    cl_check <- cl %nin% c("log", "int", "dbl", "chr", "fct", "ord", "list")
+    if (any(cl_check)) {
+      cli::cli_abort("Invalid `class` argument. Must be one of:\n
+          'log', 'int', 'dbl', 'chr', 'fct', 'ord', 'list'")
+    }
+
     col_class <- function(df, class) {
       switch(class,
         log = dplyr::select(tibble::as_tibble(df), dplyr::where(is.logical)),
@@ -42,13 +46,6 @@ select_by_class <- function(df, class, return_tbl = TRUE) {
         ord = dplyr::select(tibble::as_tibble(df), dplyr::where(is.ordered)),
         list = dplyr::select(tibble::as_tibble(df), dplyr::where(is.list))
       )
-    }
-
-    cl <- unique(class)
-    cl_check <- cl %nin% c("log", "int", "dbl", "chr", "fct", "ord", "list")
-    if (any(cl_check)) {
-      cli::cli_abort("Invalid `class` argument. Must be one of:\n
-          'log', 'int', 'dbl', 'chr', 'fct', 'ord', 'list'")
     }
 
     col_list <- purrr::map(.x = class, .f = col_class, df = df)
@@ -81,4 +78,43 @@ select_by_class <- function(df, class, return_tbl = TRUE) {
 
   return(col_types)
 
+}
+
+#' Make vector of binary columns by type (tidyverse)
+#'
+#' @param df  a `data.frame` or `tibble`
+#' @param type type of column to return
+#'
+#' @return vector of binary columns
+#'
+#'
+#' @examples
+#' require(palmerpenguins)
+#' require(dplyr)
+#' make_binary_vec(
+#'   df = dplyr::select(
+#'     palmerpenguins::penguins,
+#'     dplyr::where(is.factor)
+#'   ),
+#'   type = "fct"
+#' )
+make_bin_vec <- function(df, type) {
+  if (ncol(df) < 1) {
+    return(purrr::set_names(vector(mode = "character")))
+  } else {
+    nms <- names(df)
+    # set names in names
+    dm_nms <- purrr::set_names(nms)
+    bin_set <- purrr::map_vec(
+      .x = df,
+      .f = check_binary_vec,
+      type = type
+    )
+    if (sum(bin_set) < 1) {
+      bins <- purrr::set_names(vector(mode = "character"))
+    } else {
+      bins <- purrr::set_names(dm_nms[bin_set])
+    }
+  }
+  return(bins)
 }
