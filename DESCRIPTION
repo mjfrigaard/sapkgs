@@ -1,0 +1,17 @@
+Package: sapkgs
+Title: Shiny app-packages (skim variable app)
+Version: 0.0.0.9000
+Authors@R: 
+    person("Martin", "Frigaard", , "mjfrigaard@pm.me", role = c("aut", "cre"))
+Description: Select a package, dataset, and variable and view a skim. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    bslib,
+    shiny,
+    skimr
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
