@@ -13,12 +13,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-# skimap
+# sapkgs/skimapp
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `skimap` is to provide a `skim` of a given dataset found in the `datasets` package.
+The goal of the `skimapp` in this branch is to provide a `skim` of a given dataset found in the `datasets` package.
 
 ## Installation
 
@@ -29,6 +29,7 @@ install.packages('remotes')
 remotes::install_github('mjfrigaard/sapkgs')
 ```
 
-```{r example}
-library(sapkgs)
+```{r example, eval=FALSE}
+library(skimapp)
+skimapp::skimVarApp()
 ```

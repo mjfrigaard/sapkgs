@@ -22,6 +22,7 @@ and returns the names of columns for which the filter function returns \code{TRU
 }
 \examples{
 df <- data.frame(a = 1:10, b = letters[1:10], c = rnorm(10))
+df
 find_vars(df, is.numeric)  # Returns names of numeric columns
 
 }

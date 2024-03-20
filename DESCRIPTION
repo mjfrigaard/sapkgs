@@ -1,4 +1,4 @@
-Package: sapkgs
+Package: skimapp
 Title: Shiny app-packages (skim variable app)
 Version: 0.0.0.9000
 Authors@R: 
