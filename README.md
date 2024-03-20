@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `utap`
+# utap
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -19,24 +19,32 @@ it’s contents).
 # R files
 
     #> R/
+    #> ├── check_binary_vec.R
+    #> ├── check_facet_vec.R
+    #> ├── make_binary_vec.R
+    #> ├── make_facet_vec.R
     #> ├── nin.R
     #> ├── pull_binary_cols.R
     #> ├── pull_cat_cols.R
+    #> ├── pull_cols.R
     #> ├── pull_facet_cols.R
     #> ├── pull_numeric_cols.R
-    #> ├── select_by_class.R
-    #> ├── testtthat.R
+    #> ├── select_class.R
+    #> ├── test_utils.R
+    #> ├── tidy_funs.R
     #> └── utap-package.R
 
 # Unit tests
 
     #> tests/testthat/
+    #> ├── test-check_binary_vec.R
+    #> ├── test-make_binary_vec.R
+    #> ├── test-nin.R
     #> ├── test-pull_binary_cols.R
     #> ├── test-pull_cat_cols.R
     #> ├── test-pull_facet_cols.R
     #> ├── test-pull_numeric_cols.R
-    #> ├── test-select_by_class.R
-    #> └── test-utils.R
+    #> └── test-select_class.R
 
 # Unit test results
 
@@ -45,15 +53,16 @@ it’s contents).
 
 ℹ Testing utap
 ✔ | F W  S  OK | Context
-✔ |         29 | pull_binary_cols
-✔ |          4 | pull_cat_cols
+✔ |         23 | check_binary_vec
+✔ |          5 | make_binary_vec
+✔ |          3 | nin          
+✔ |          4 | pull_cat_colsols
 ✔ |         20 | pull_facet_cols
 ✔ |          5 | pull_numeric_cols
-✔ |         25 | select_by_class
-✔ |          3 | utils        
+✔ |         36 | select_class 
 
 ══ Results ═══════════════════
-Duration: 2.0 s
+Duration: 1.8 s
 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 86 ]
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 96 ]
 ```
