@@ -1,20 +1,21 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# utap
+# sapkgs/utap
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `utap` is to demonstrate how to perform unit tests for shiny
-utility functions with [`testthat`](https://testthat.r-lib.org/).
+The goal of the `utap` application is to demonstrate how to perform unit
+tests for Shiny utility functions with
+[`testthat`](https://testthat.r-lib.org/).
 
 ## Installation
 
-You don’t want to install this package, but you might want to download
-it as an example (or read through [this
-post](https://mjfrigaard.github.io/posts/test-shiny-p1/) to learn about
-it’s contents).
+``` r
+install.packages('remotes')
+remotes::install_github('mjfrigaard/sapkgs')
+```
 
 # R files
 
