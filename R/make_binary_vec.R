@@ -10,7 +10,6 @@
 #'
 #' @examples
 #' require(palmerpenguins)
-#' require(dplyr)
 #' make_binary_vec(
 #'   df = dplyr::select(
 #'     palmerpenguins::penguins,

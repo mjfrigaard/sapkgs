@@ -1,9 +1,36 @@
 # check returns df ----
-describe("select_class() return classes", code = {
+describe("select_class() returned objects", code = {
   it("df returned", {
-    test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
+    # define test data
+    test_col_class <- data.frame(
+      log_var = c(TRUE, FALSE, TRUE),
+      int_var = c(1L, 2L, 3L),
+      dbl_var = c(1.1, 2.2, 3.3),
+      chr_var = c("item:1", "item:2", "item:3"),
+      ord_var = factor(
+        x = c("level 1", "level 2", "level 3"),
+        levels = c("level 1", "level 2", "level 3"),
+        labels = c("level 1", "level 2", "level 3"),
+        ordered = TRUE
+      ),
+      fct_var = factor(
+        x = c("group 1", "group 2", "group 3"),
+        levels = c("group 1", "group 2", "group 3"),
+        labels = c("group 1", "group 2", "group 3")
+      )
+    )
+    list_var <- list(
+      log = c(TRUE, FALSE, TRUE),
+      dbl = c(1.1, 2.2, 3.3),
+      chr = c("item:1", "item:2", "item:3")
+    )
+    test_col_class$list_var <- list_var
+    # create object
     object <- select_class(df = test_col_class, class = "logical")
+    # test object
     expect_s3_class(object, "data.frame")
+  })
+  it("df returned", {
     test_data <- col_maker(
       col_type = c("log", "int", "dbl", "chr"),
       size = 6, missing = FALSE
@@ -12,7 +39,7 @@ describe("select_class() return classes", code = {
       class = c("tbl_df", "tbl", "data.frame")
     )
   })
-  it("returns string works", {
+  it("string returned", {
     test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
     object <- select_class(
       df = test_col_class,
@@ -20,7 +47,7 @@ describe("select_class() return classes", code = {
     )
     expect_type(object = object, type = "character")
   })
-  it("return named vector works", {
+  it("named vector returned", {
     test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
     object <- select_class(
       df = test_col_class,
@@ -38,25 +65,19 @@ describe("select_class() return classes", code = {
   describe("logical classes", code = {
     it("select_class() logical works", {
       test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
-      object <- select_class(df = test_col_class, class = "logical")
-      expect_type(object = object[[1]], type = "logical")
-      expect_equal(
-        select_class(df = test_col_class, class = "logical") |>
-          lapply(is.logical) |> unlist() |> unique(),
-        expected = TRUE
-      )
-      expect_equal(
-        select_class(
-          df = col_maker(
-            col_type = c("log", "int", "dbl", "chr"),
-            size = 6,
-            missing = FALSE,
-            lvls = 4
-          ),
-          class = "log"
-        ) |> unlist() |> is.logical(),
-        expected = TRUE
-      )
+      # define object
+      obj <- select_class(df = test_col_class, class = "logical")
+      # test type
+      expect_type(object = obj[[1]], type = "logical")
+      # define the object
+      obj <- select_class(df = col_maker(
+              col_type = c("log", "int", "dbl", "chr"),
+              size = 6,
+              missing = FALSE,
+              lvls = 4
+            ), class = "log")
+      # test class
+      expect_true(is.logical(obj[[1]]))
       expect_equal(
         select_class(
           df = col_maker(
@@ -71,7 +92,6 @@ describe("select_class() return classes", code = {
         expected = c(log_var = "log_var")
       )
     })
-
     # check integer ----
     describe("integer classes", code = {
       it("select_class() integer works", {

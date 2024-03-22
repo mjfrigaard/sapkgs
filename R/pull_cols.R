@@ -1,7 +1,8 @@
 #' Pull names of column by type
 #'
 #' @param df a `data.frame` or `tibble`
-#' @param type one of `bin`, `cat`, `num`, or `facet`
+#' @param type one of `bin` (binary), `cat` (categorical), `num` (numeric),
+#' or `facet` (categorical with 3-5 levels)
 #'
 #' @return a named character vector of column names by type
 #'

@@ -19,7 +19,6 @@ Create vector of binary columns by type (helper)
 }
 \examples{
 require(palmerpenguins)
-require(dplyr)
 make_binary_vec(
   df = dplyr::select(
     palmerpenguins::penguins,

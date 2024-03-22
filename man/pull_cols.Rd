@@ -9,7 +9,8 @@ pull_cols(df, type)
 \arguments{
 \item{df}{a \code{data.frame} or \code{tibble}}
 
-\item{type}{one of \code{bin}, \code{cat}, \code{num}, or \code{facet}}
+\item{type}{one of \code{bin} (binary), \code{cat} (categorical), \code{num} (numeric),
+or \code{facet} (categorical with 3-5 levels)}
 }
 \value{
 a named character vector of column names by type

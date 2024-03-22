@@ -10,7 +10,6 @@
 #'
 #' @examples
 #' require(NHANES)
-#' require(dplyr)
 #' facets <- make_facet_vec(
 #'   df = dplyr::select(
 #'     NHANES::NHANES,
