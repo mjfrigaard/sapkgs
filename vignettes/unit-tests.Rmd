@@ -1,0 +1,106 @@
+---
+title: "Unit tests"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Unit tests}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 5,
+  fig.height = 3.5,
+  dpi = 140,
+  fig.retina = TRUE
+)
+```
+
+```{r}
+#| label: pkgs
+#| message: false
+#| warning: false
+library(msst2ap)
+library(testthat)
+
+```
+
+## Unit tests
+
+The unit tests have been removed from `msst2ap` to focus on the `shinytest2` tests, but I've stored each each of them are stored the tests for each R file in this vignette for completeness. 
+
+```{r}
+#| label: test_cmt 
+#| include: false
+test_cmt <- function(test, msg) {
+  cat("\n\t", glue::glue("  {test}: {msg}"), "\n")
+}
+
+```
+
+## find_vars()
+
+Test function (`is.double`)
+
+```{r}
+testthat::test_that("find_vars", {
+    testthat::expect_equal(
+    object = find_vars(datasets::airquality,
+                            filter = is.double),
+    expected = names(airquality)[vapply(airquality, is.double, logical(1))])
+    test_cmt("find_vars", "is.double()")
+})
+```
+
+Test function (`is.character`)
+
+```{r}
+testthat::test_that("find_vars", {
+  testthat::expect_equal(
+    object = find_vars(datasets::mtcars,
+                            filter = is.character),
+    expected = datasets::mtcars |>
+      dplyr::select(where(is.character)) |>
+      names())
+  test_cmt("find_vars", "is.character()")
+})
+```
+
+Test error: `state.abb` is a vector--pass `is.character` function to `filter`
+
+```{r}
+#| error: true
+find_vars(data = datasets::state.abb, is.character)
+```
+
+
+```{r}
+testthat::test_that("find_vars", {
+  testthat::expect_error(object =
+      find_vars(datasets::state.abb, filter = is.character))
+  test_cmt("find_vars", "error: data")
+})
+```
+
+Test error: pass `is.miracle` function to `filter`
+
+```{r}
+#| error: true
+find_vars(data = datasets::mtcars, is.miracle)
+```
+
+
+```{r}
+testthat::test_that("find_vars", {
+  testthat::expect_error(object =
+      find_vars(datasets::mtcars, filter = is.miracle))
+  test_cmt("find_vars", "error: filter")
+
+})
+```
+

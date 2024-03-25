@@ -1,28 +1,39 @@
-Package: msap
-Title: Apps from Mastering Shiny
-Version: 0.0.0.9000
+Type: Package
+Package: msst2ap
+Title: Mastering Shiny Shiny Test 2 App Package
+Version: 0.1.0
 Author: Martin Frigaard
 Maintainer: Martin Frigaard <mjfrigaard@pm.me>
-Description: This shiny app-package contains the various apps in Mastering Shiny
-    by Hadley Wickham (2021) <https://mastering-shiny.org/>. 
+Description: This Shiny app-package demonstrates testing with testthat and
+    shinytest2 using the examples from from Mastering Shiny
+    (mastering-shiny.org).
 License: MIT + file LICENSE
+URL: https://mjfrigaard.github.io/msst2ap/
+Depends: 
+    R (>= 3.5),
+    shiny
+Imports: 
+    dplyr,
+    fs,
+    glue,
+    lobstr,
+    pkgload,
+    purrr,
+    rlang,
+    rsconnect,
+    shinytest2
+Suggests: 
+    chromote,
+    datasets,
+    knitr,
+    remotes,
+    rmarkdown,
+    testthat,
+    vdiffr
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
-Depends: 
-    R (>= 3.5)
+RoxygenNote: 7.3.1
 Config/testthat/edition: 3
-VignetteBuilder: knitr
-Imports: 
-    shiny,
-    dplyr,
-    rlang,
-    ggplot2,
-    janitor,
-    rsconnect,
-    stringr,
-    testthat,
-    knitr,
-    rmarkdown,
-    shinytest2

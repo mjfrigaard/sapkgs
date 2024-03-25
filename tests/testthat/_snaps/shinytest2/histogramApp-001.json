@@ -1,0 +1,48 @@
+{
+  "input": {
+    "data-dataset": "attitude",
+    "hist-bins": 15,
+    "var-var": "privileges"
+  },
+  "output": {
+    "hist-hist": {
+      "src": "[image data hash: fde4089afc06a814d75c627b823d0806]",
+      "width": 682.6640625,
+      "height": 400,
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "domain": {
+              "left": 27.8,
+              "right": 87.2,
+              "bottom": -0.24,
+              "top": 6.24
+            },
+            "range": {
+              "left": 78.79664956011726,
+              "right": 642.3048029692084,
+              "bottom": 301.08,
+              "top": 77.71999999999998
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "mapping": {
+
+            }
+          }
+        ],
+        "dims": {
+          "width": 682.6640625,
+          "height": 400
+        }
+      }
+    },
+    "vals": "$`hist-bins`\n[1] 15\n\n$`var-var`\n[1] \"privileges\"\n\n$`data-dataset`\n[1] \"attitude\"\n"
+  },
+  "export": {
+
+  }
+}

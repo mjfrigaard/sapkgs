@@ -1,60 +1,54 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 
 # Mastering Shiny Shiny Test 2 App Package (`msst2ap`)
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
-The goal of `msst2ap` is to demonstrate how to test a shiny app-package using [`testthat`](https://testthat.r-lib.org/) and [`shinytest2`](https://rstudio.github.io/shinytest2/)
+The goal of `msst2ap` is to demonstrate how to test a shiny app-package
+using [`testthat`](https://testthat.r-lib.org/) and
+[`shinytest2`](https://rstudio.github.io/shinytest2/)
 
-All examples come from the [Modules chapter of Mastering Shiny.](https://mastering-shiny.org/scaling-modules.html) 
+All examples come from the [Modules chapter of Mastering
+Shiny.](https://mastering-shiny.org/scaling-modules.html)
 
 ## Installation
 
-You can install `msst2ap` from GitHub using the code below: 
+You can install `msst2ap` from GitHub using the code below:
 
-```{r}
-#| eval: false
-#| echo: true
+``` r
 remotes::install_github("mjfrigaard/msst2ap",
   force = TRUE, quiet = TRUE
 )
 ```
 
-```{r}
-#| eval: true
-#| echo: true
+``` r
 library(msst2ap)
+#> Loading required package: shiny
+#> Loading required package: shinytest2
+#> Loading required package: testthat
 ```
 
-## Set up 
+## Set up
 
-There are specific instructions for setting up `shinytest2` in the [`shinytest2-setup.Rmd` vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/shinytest2-setup.Rmd). 
+There are specific instructions for setting up `shinytest2` in the
+[`shinytest2-setup.Rmd`
+vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/shinytest2-setup.Rmd).
 
 ## Utility function/`testServer()` tests
 
-Tests for the utility functions are in [`unit-tests.Rmd` vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/unit-tests.Rmd). Test for the module server functions and standalone app functions are in the [`testserver-tests.Rmd` vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/testserver-tests.Rmd). 
+Tests for the utility functions are in [`unit-tests.Rmd`
+vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/unit-tests.Rmd).
+Test for the module server functions and standalone app functions are in
+the [`testserver-tests.Rmd`
+vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/testserver-tests.Rmd).
 
 ## `shinytest2` tests
 
-The output from `devtools::test()` is below: 
+The output from `devtools::test()` is below:
 
-```{verbatim}
-#| eval: false 
+``` default
 ==> devtools::test()
 
 ℹ Testing msst2ap
@@ -98,15 +92,15 @@ Duration: 46.0 s
 
 ### Known issue
 
-The following warning is given when running `shinytest2` tests in an app package:
+The following warning is given when running `shinytest2` tests in an app
+package:
 
-```{verbatim}
-#| eval: false 
+``` default
 Warning message:
 In shiny::loadSupport(app_dir, renv = renv, globalrenv = globalrenv) :
   Loading R/ subdirectory for Shiny application, but this directory appears to 
 contain an R package. Sourcing files in R/ may cause unexpected behavior.
 ```
 
-Don't worry--there is an [open issue on GitHub](https://github.com/rstudio/shinytest2/issues/264) for this!
-
+Don’t worry–there is an [open issue on
+GitHub](https://github.com/rstudio/shinytest2/issues/264) for this!
