@@ -28,7 +28,35 @@ The `tests/testthat.R` file contains the code to run the tests:
 library(testthat)
 source("app.R")
 test_dir(path = "tests/testthat/")
-testthat::test_file("tests/testthat/test-mod_abc_server.R")
+```
+
+```verbatim
+✔ | F W  S  OK | Context
+⠏ |          0 | mod_abc_server                            
+ Test 1 initial input$num = NULL:  TRUE 
+
+ Test 2 setInputs(num = 3): 3 
+
+ Test 3 sup_scrpt(): = 'rd': rd 
+
+ Test 4 letter() = C: C 
+$html
+<em>
+  The 
+  <code>3</code>
+  <code>rd</code>
+   letter in the alphabet is: 
+  <code>C</code>
+</em>
+
+$deps
+list()
+
+✔ |          5 | mod_abc_server
+✔ |         10 | num_super_script                                                                   
+
+══ Results ══════════════════════════════════════════════════════════
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 15 ]
 ```
 
 Note that this is currently set to test the application with modules.
