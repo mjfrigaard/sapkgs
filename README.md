@@ -1,24 +1,13 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 
 # skimapp
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `skimapp` is to select a dataset and present a `skim` of a variable.    
+The goal of `skimapp` is to select a dataset and present a `skim` of a
+variable.
 
 ## Installation
 
@@ -28,4 +17,3 @@ You can install the development version of `skimapp` like so:
 install.packages('remotes')
 remotes::install_github('mjfrigaard/sapkgs')
 ```
-
