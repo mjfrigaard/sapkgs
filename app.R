@@ -1,7 +1,6 @@
 # packages --------------------------------------------------------
 library(shiny)
 library(testthat)
-library(testthat)
 
 # utils -----------------------------------------------------------
 source("utils.R")

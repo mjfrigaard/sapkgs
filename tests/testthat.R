@@ -9,5 +9,5 @@
 library(testthat)
 source("app.R")
 test_dir(path = "tests/testthat/")
-# testthat::test_file("tests/testthat/test-mod_abc_server.R")
+testthat::test_file("tests/testthat/test-mod_abc_server.R")
 # testthat::test_file("tests/testthat/test-num_super_script.R")
