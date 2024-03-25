@@ -1,3 +1,3 @@
 library(testthat)
-library(tsap)
-test_check("tsap")
+library(mstsap)
+test_check("mstsap")

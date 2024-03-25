@@ -1,34 +1,28 @@
 Type: Package
-Package: tsap
-Title: Test Server App Package (tsap)
+Package: mstsap
+Title: Mastering Shiny Test Server App Package
 Version: 0.1.0
 Author: Martin Frigaard
 Maintainer: Martin Frigaard <mjfrigaard@pm.me>
-Description: A Shiny app-package developed to demonstrate testing with
-    testthat and Shiny's testServer() function.
+Description: This Shiny app-package demonstrates testing with testthat using the
+    examples from from Mastering Shiny (mastering-shiny.org).
 License: MIT + file LICENSE
+URL: https://mjfrigaard.github.io/mstsap/
 Depends: 
-    R (>= 3.5),
-    NHANES,
-    palmerpenguins,
-    dplyr
+    R (>= 3.5)
 Imports: 
-    cli,
-    ggplot2,
-    glue,
-    janitor,
+    dplyr,
+    lobstr,
     pkgload,
-    purrr,
     rlang,
     rsconnect,
-    shiny,
-    snakecase,
-    stringr,
-    tibble,
-    tidyr,
-    zeallot
+    shiny
 Suggests: 
+    datasets,
+    fs,
+    glue,
     knitr,
+    remotes,
     rmarkdown,
     testthat
 VignetteBuilder: 

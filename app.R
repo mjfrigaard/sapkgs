@@ -3,7 +3,10 @@ pkgload::load_all(
   export_all = FALSE,
   helpers = TRUE,
   attach_testthat = TRUE)
-library(tsap)
+library(mstsap)
 # options(shiny.fullstacktrace = TRUE)
-tsap::launchApp()
-# rsconnect::deployApp()
+mstsap::datasetApp()
+mstsap::selectVarApp()
+mstsap::selectDataVarApp()
+
+
