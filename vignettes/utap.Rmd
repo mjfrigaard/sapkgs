@@ -12,7 +12,7 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = FALSE,
-  comment = "\t",
+  comment = " ",
   eval = TRUE
 )
 ```
@@ -24,26 +24,27 @@ library(lobstr)
 
 ## Function trees
 
-The `lobstr` package provides the abstract syntax tree function, which I like to use for creating function trees. For example, below is the tree for `select_by_class()`:
+The `lobstr` package provides the abstract syntax tree function, which I like to use for creating function trees. For example, below is the tree for `pull_binary_cols()`:
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 lobstr::ast(
-  select_by_class(
-    select_column_class(
-      col_class() 
+  pull_binary_cols(
+    select_class(
+      is_class()
+      ),
+  make_binary_vec(
+    check_binary_vec(
+      check_log_binary(),
+      check_int_binary(),
+      check_chr_binary(),
+      check_fct_binary(),
+      check_ord_binary()
+        )
+      )
     )
   )
-)
-```
-
-```{verbatim}
-#| eval: false
-#| echo: true
-█─select_by_class 
-└─█─select_column_class 
-  └─█─col_class 
 ```
 
 This function can be demonstrated using data with some of the test helpers in `tests/testthat/helper.R`
@@ -90,146 +91,124 @@ test_data
 ```
 
 
-### select_column_class() & col_class()
+### select_class() & is_class()
 
-`select_column_class()` and `col_class()` are called from within `select_by_class()`, which is a wrapper function that includes the `return_tbl` argument for returning the columns as a named vector. 
+Both `select_class()` and `is_class()` are stored in `R/select_class.R`, which includes the `return_tbl` argument for returning the columns as a named vector. 
 
 ```{r}
 #| eval: true
 #| echo: true
 lobstr::ast(
-  select_by_class(
-    select_column_class( # nested
-      col_class() # not defined in roxygen2
+  select_class(
+    is_class( # nested
     )
   )
 )
 ```
 
 ```{r}
-#| eval: false
-#| echo: true
-select_by_class(
-  df = test_data,
-  class = c("int", "dbl"),
-  return_tbl = TRUE
-)
-
-select_by_class(
-  df = test_data,
-  class = c("int", "dbl"),
-  return_tbl = FALSE
-)
-```
-
-```{r}
 #| eval: true
-#| echo: false
-#| collapse: false
-select_by_class(
+#| echo: true
+select_class(
   df = test_data,
   class = c("int", "dbl"),
   return_tbl = TRUE
-) 
-select_by_class(
+)
+
+select_class(
   df = test_data,
   class = c("int", "dbl"),
   return_tbl = FALSE
 )
 ```
+
+
 
 
 ### pull_[type]_cols()
 
-All of the `pull_[type]_cols()` functions use the `select_by_class()` to return the initial set of column names. 
+All of the `pull_[type]_cols()` functions use the `select_class()` to return the initial set of column names. See `pull_binary_cols()` and `pull_facet_cols()` below:
 
 ```{r}
-#| eval: false
-#| echo: true
-lobstr::ast(
-  select_by_class(
-    select_column_class(
-      col_class()
-    ),
-    pull_binary_cols(),
-    pull_facet_cols(),
-    pull_cat_cols(),
-    pull_numeric_cols()
-  )
-)
-```
-
-```{verbatim}
-#| eval: false
-#| echo: true
-█─select_by_class 
-├─█─select_column_class 
-│ └─█─col_class 
-├─█─pull_binary_cols 
-├─█─pull_facet_cols 
-├─█─pull_cat_cols 
-└─█─pull_numeric_cols
-```
-
-### pull_binary_cols()
-
-```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 lobstr::ast(
   pull_binary_cols(
-    check_binary_vec(
-      check_log_binary(),
-      check_int_binary(),
-      check_fct_binary()
-    ),
-    make_binary_vec()
+    select_class(is_class()),
+    make_binary_vec(
+      check_binary_vec(
+        check_log_binary(),
+        check_int_binary(),
+        check_chr_binary(),
+        check_ord_binary()
+      )
+    )
   )
 )
-```
-
-```{verbatim}
-#| eval: false
-#| echo: true
-█─pull_binary_cols 
-├─█─check_binary_vec 
-│ ├─█─check_log_binary 
-│ ├─█─check_int_binary 
-│ └─█─check_fct_binary 
-└─█─make_binary_vec 
 ```
 
 ```{r}
 pull_binary_cols(df = test_data)
 ```
 
-
-### pull_facet_cols()
-
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 lobstr::ast(
-  pull_facet_cols(
-    check_facet_vec(
-      check_chr_facet(),
-      check_fct_facet()
-    ),
-    make_facet_vec()
+    pull_facet_cols(
+      pull_binary_cols(),
+      select_class(is_class()),
+      make_facet_vec(
+        check_facet_vec(
+          check_chr_facet(),
+          check_fct_facet()
+        )
+      )
   )
 )
 ```
 
-```{verbatim}
-#| eval: false
-#| echo: true
-█─pull_facet_cols 
-├─█─check_facet_vec 
-│ ├─█─check_chr_facet 
-│ └─█─check_fct_facet 
-└─█─make_facet_vec 
-```
-
 ```{r}
 pull_facet_cols(df = test_data)
+```
+
+The full `pull_cols()` is outlined below: 
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-fold: false
+#| collapse: false
+lobstr::ast(
+  pull_cols(
+    pull_binary_cols(
+      select_class(is_class()),
+      make_binary_vec(
+        check_binary_vec(
+          check_log_binary(),
+          check_int_binary(),
+          check_chr_binary(),
+          check_ord_binary()
+        )
+      )
+    ),
+    pull_cat_cols(
+      select_class(is_class())
+    ),
+    pull_facet_cols(
+      pull_binary_cols(),
+      select_class(is_class()),
+      make_facet_vec(
+        check_facet_vec(
+          check_chr_facet(),
+          check_fct_facet()
+        )
+      )
+    ),
+    pull_numeric_cols(
+      pull_binary_cols(),
+      pull_facet_cols()
+    )
+  )
+)
 ```

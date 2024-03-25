@@ -1,17 +1,24 @@
 #' Select Column Class
 #'
-#' select_class() selects columns from a data.frame based on the specified class
-#' (data type). Supports logical, integer, double, character, factor, ordered,
+#' `select_class()` selects columns from a data.frame based on the specified
+#' `class`. Options include logical, integer, double, character, factor, ordered,
 #' and list column types.
 #'
-#' @param df A data.frame from which columns will be selected.
+#' @param df A `data.frame` from which columns will be selected.
 #' @param class Character vector specifying the class(es) of columns to select.
-#'   Supported values are "logical" ("lo"), "integer" ("in"), "double" ("do"),
-#'   "character" ("ch"), "factor" ("fa"), "ordered" ("or"), and "list" ("li").
-#' @param return_tbl Logical indicating whether to return the result as a dataframe.
-#'   If `FALSE`, a vector of selected column names is returned.
+#'   Supported values are:
+#'   * "logical" ("lo")
+#'   * "integer" ("in")
+#'   * "double" ("do")
+#'   * "character" ("ch")
+#'   * "factor" ("fa")
+#'   * "ordered" ("or")
+#'   * "list" ("li")
 #'
-#' @return A dataframe or vector of column names, depending on `return_tbl`.
+#' @param return_tbl Logical indicating whether to return the result as a
+#'   `data.frame`. If `FALSE`, a vector of selected column names is returned.
+#'
+#' @return A `data.frame` or vector of column names, depending on `return_tbl`.
 #'
 #' @examples
 #' data(iris)

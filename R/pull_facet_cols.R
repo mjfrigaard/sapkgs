@@ -11,8 +11,8 @@
 #'
 #' @return a named character vector of factor or character column names with
 #' < 5 unique levels
-#' @export pull_facet_cols
 #'
+#' @export
 #'
 #' @examples
 #' require(dplyr)

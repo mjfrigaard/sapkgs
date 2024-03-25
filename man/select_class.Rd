@@ -7,21 +7,29 @@
 select_class(df, class, return_tbl = TRUE)
 }
 \arguments{
-\item{df}{A data.frame from which columns will be selected.}
+\item{df}{A \code{data.frame} from which columns will be selected.}
 
 \item{class}{Character vector specifying the class(es) of columns to select.
-Supported values are "logical" ("lo"), "integer" ("in"), "double" ("do"),
-"character" ("ch"), "factor" ("fa"), "ordered" ("or"), and "list" ("li").}
+Supported values are:
+\itemize{
+\item "logical" ("lo")
+\item "integer" ("in")
+\item "double" ("do")
+\item "character" ("ch")
+\item "factor" ("fa")
+\item "ordered" ("or")
+\item "list" ("li")
+}}
 
-\item{return_tbl}{Logical indicating whether to return the result as a dataframe.
-If \code{FALSE}, a vector of selected column names is returned.}
+\item{return_tbl}{Logical indicating whether to return the result as a
+\code{data.frame}. If \code{FALSE}, a vector of selected column names is returned.}
 }
 \value{
-A dataframe or vector of column names, depending on \code{return_tbl}.
+A \code{data.frame} or vector of column names, depending on \code{return_tbl}.
 }
 \description{
-select_class() selects columns from a data.frame based on the specified class
-(data type). Supports logical, integer, double, character, factor, ordered,
+\code{select_class()} selects columns from a data.frame based on the specified
+\code{class}. Options include logical, integer, double, character, factor, ordered,
 and list column types.
 }
 \examples{

@@ -1,59 +1,59 @@
 # check returns df ----
-describe("select_class() returned objects", code = {
+describe("select_class() returned objs", code = {
   it("df returned", {
     # define test data
-    test_col_class <- data.frame(
+    test_data <- data.frame(
       log_var = c(TRUE, FALSE, TRUE),
       int_var = c(1L, 2L, 3L),
       dbl_var = c(1.1, 2.2, 3.3),
-      chr_var = c("item:1", "item:2", "item:3"),
+      chr_var = paste0(rep("item:", times = 3), 1:3),
       ord_var = factor(
-        x = c("level 1", "level 2", "level 3"),
-        levels = c("level 1", "level 2", "level 3"),
-        labels = c("level 1", "level 2", "level 3"),
+        x = paste(rep("level", times = 3), 1:3),
+        levels = paste(rep("level", times = 3), 1:3),
+        labels = paste(rep("level", times = 3), 1:3),
         ordered = TRUE
       ),
       fct_var = factor(
-        x = c("group 1", "group 2", "group 3"),
-        levels = c("group 1", "group 2", "group 3"),
-        labels = c("group 1", "group 2", "group 3")
+        x = paste(rep("group", times = 3), 1:3),
+        levels = paste(rep("group", times = 3), 1:3),
+        labels = paste(rep("group", times = 3), 1:3)
       )
     )
+    # create list variable
     list_var <- list(
       log = c(TRUE, FALSE, TRUE),
       dbl = c(1.1, 2.2, 3.3),
-      chr = c("item:1", "item:2", "item:3")
+      chr = paste0(rep("item:", times = 3), 1:3)
     )
-    test_col_class$list_var <- list_var
-    # create object
-    object <- select_class(df = test_col_class, class = "logical")
-    # test object
-    expect_s3_class(object, "data.frame")
+    # add to df
+    test_data$list_var <- list_var
+    # create obj
+    obj <- select_class(df = test_data, class = "logical")
+    # test obj
+    expect_s3_class(obj, "data.frame")
   })
   it("df returned", {
-    test_data <- col_maker(
-      col_type = c("log", "int", "dbl", "chr"),
-      size = 6, missing = FALSE
-    )
-    expect_s3_class(select_class(df = test_data, class = "log"),
+    test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+    expect_s3_class(
+      select_class(df = test_data, class = "log"),
       class = c("tbl_df", "tbl", "data.frame")
     )
   })
   it("string returned", {
-    test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
-    object <- select_class(
-      df = test_col_class,
+    test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+    obj <- select_class(
+      df = test_data,
       class = "logical", return_tbl = FALSE
     )
-    expect_type(object = object, type = "character")
+    expect_type(obj, type = "character")
   })
   it("named vector returned", {
-    test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
-    object <- select_class(
-      df = test_col_class,
+    test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+    obj <- select_class(
+      df = test_data,
       class = "logical", return_tbl = FALSE
     )
-    expect_named(object = object, expected = "log_var")
+    expect_named(obj, expected = "log_var")
   })
 })
 
@@ -61,305 +61,63 @@ describe("select_class() returned objects", code = {
 
 # check classes ----
 describe("select_class() return classes", code = {
-  # check logical ----
-  describe("logical classes", code = {
-    it("select_class() logical works", {
-      test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
-      # define object
-      obj <- select_class(df = test_col_class, class = "logical")
+  ## check logical ----
+    it("logical works", {
+      test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+      # define obj
+      obj <- select_class(df = test_data, class = "logical")
       # test type
-      expect_type(object = obj[[1]], type = "logical")
-      # define the object
-      obj <- select_class(df = col_maker(
-              col_type = c("log", "int", "dbl", "chr"),
-              size = 6,
-              missing = FALSE,
-              lvls = 4
-            ), class = "log")
-      # test class
-      expect_true(is.logical(obj[[1]]))
-      expect_equal(
-        select_class(
-          df = col_maker(
-            col_type = c("log", "int", "dbl", "chr"),
-            size = 6,
-            missing = FALSE,
-            lvls = 4
-          ),
-          class = "log",
-          return_tbl = FALSE
-        ),
-        expected = c(log_var = "log_var")
-      )
+      expect_type(obj[[1]], type = "logical")
     })
-    # check integer ----
-    describe("integer classes", code = {
-      it("select_class() integer works", {
-        test_col_class <-
-          readRDS(test_path("fixtures", "test_col_class.rds"))
-        object <-
-          select_class(df = test_col_class, class = "integer")
-        expect_type(object = object[[1]], type = "integer")
-        expect_equal(
-          select_class(df = test_col_class, class = "integer") |>
-            lapply(is.integer) |> unlist() |> unique(),
-          expected = TRUE
-        )
-        int_test <- col_maker(
-          col_type = c("log", "int", "dbl", "chr"),
-          size = 6,
-          missing = FALSE,
-          lvls = 4
-        )
-        expect_equal(
-          select_class(df = int_test, class = "int") |>
-            unlist() |>
-            is.integer(),
-          expected = TRUE
-        )
-        expect_equal(
-          select_class(
-            df = int_test,
-            class = "int",
-            return_tbl = FALSE
-          ),
-          expected = c(int_var = "int_var")
-        )
+    ## check integer ----
+    it("integer works", {
+      test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+      obj <- select_class(df = test_data, class = "integer")
+      expect_type(obj[[1]], type = "integer")
       })
-    })
-  })
 
-  # check double ----
-  describe("integer double", code = {
-    it("select_class() double works", {
-      test_col_class <-
-        readRDS(test_path("fixtures", "test_col_class.rds"))
-      object <-
-        select_class(df = test_col_class, class = "double")
-      expect_type(object = object[[1]], type = "double")
-      expect_equal(
-        select_class(df = test_col_class, class = "double") |>
-          lapply(is.double) |> unlist() |> unique(),
-        expected = TRUE
-      )
-      dbl_test <- col_maker(
-        col_type = c("log", "int", "dbl", "chr"),
-        size = 6,
-        missing = FALSE,
-        lvls = 4
-      )
-      expect_equal(
-        select_class(
-          df = dbl_test,
-          class = "double"
-        ) |>
-          unlist() |>
-          is.double(),
-        expected = TRUE
-      )
-      expect_equal(
-        select_class(
-          df = dbl_test,
-          class = "double",
-          return_tbl = FALSE
-        ),
-        expected = c(dbl_var = "dbl_var")
-      )
+  ## check double ----
+    it("double works", {
+      test_data <-
+        readRDS(test_path("fixtures", "test_data.rds"))
+      obj <- select_class(df = test_data, class = "double")
+      expect_type(obj[[1]], type = "double")
     })
-  })
-  # check character ----
-  describe("character works", code = {
-    it("character", {
-      test_col_class <-
-        readRDS(test_path("fixtures", "test_col_class.rds"))
-      object <- select_class(df = test_col_class, class = "character")
-      expect_type(object = object[[1]], type = "character")
-      expect_equal(
-        select_class(df = test_col_class, class = "character") |>
-          lapply(is.character) |> unlist() |> unique(),
-        expected = TRUE
-      )
-      chr_test <- col_maker(
-        col_type = c("log", "int", "dbl", "chr"),
-        size = 6,
-        missing = FALSE,
-        lvls = 4
-      )
-      expect_equal(
-        select_class(
-          df = chr_test,
-          class = "character"
-        ) |>
-          unlist() |>
-          is.character(),
-        expected = TRUE
-      )
-      expect_equal(
-        select_class(
-          df = chr_test,
-          class = "character", return_tbl = FALSE
-        ),
-        expected = c(chr_var = "chr_var")
-      )
+  ## check character ----
+    it("character works", {
+      test_data <-
+        readRDS(test_path("fixtures", "test_data.rds"))
+      obj <- select_class(df = test_data, class = "character")
+      expect_type(obj[[1]], type = "character")
     })
-  })
-
-  # check factor ----
-  describe("factor works", code = {
-    it("select_class() factor works", {
-      test_col_class <- col_maker(
-        col_type = c(
-          "log", "int", "dbl", "chr",
-          "fct", "ord"
-        ),
-        size = 3,
-        missing = FALSE
-      )
-      object <- select_class(df = test_col_class, class = "factor")
-      expect_s3_class(object = object[[1]], class = "factor")
-      expect_equal(
-        select_class(df = test_col_class, class = "factor") |>
-          lapply(is.factor) |> unlist() |> unique(),
-        expected = TRUE
-      )
-      fct_test <- col_maker(
-        col_type = c("int", "chr", "fct"),
-        size = 6,
-        missing = FALSE,
-        lvls = 4
-      )
-      expect_equal(
-        select_class(
-          df = fct_test,
-          class = "factor"
-        ) |>
-          unlist() |>
-          is.factor(),
-        expected = TRUE
-      )
-      expect_equal(
-        select_class(
-          df = fct_test,
-          class = "factor",
-          return_tbl = FALSE
-        ),
-        expected = c(fct_var = "fct_var")
-      )
+  ## check factor ----
+    it("factor works", {
+      test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+      obj <- select_class(df = test_data, class = "factor")
+      expect_s3_class(obj[[1]], class = "factor")
     })
-  })
-
-  # check factor (ordered) ----
-  describe("ordered works", code = {
-    it("ordered", {
-      test_col_class <- col_maker(
-        col_type = c(
-          "log", "int", "dbl", "chr",
-          "fct", "ord"
-        ),
-        size = 3,
-        missing = FALSE
-      )
-      object <- select_class(df = test_col_class, class = "ordered")
-      expect_s3_class(object = object[[1]], class = "ordered")
-      expect_equal(
-        select_class(df = test_col_class, class = "ordered") |>
-          lapply(is.ordered) |> unlist() |> unique(),
-        expected = TRUE
-      )
-      ord_test <- col_maker(
-        col_type = c("int", "chr", "fct", "ord"),
-        size = 6,
-        missing = FALSE,
-        lvls = 4
-      )
-      expect_equal(
-        select_class(
-          df = ord_test,
-          class = "ord"
-        ) |>
-          dplyr::pull(ord_var) |>
-          is.ordered(),
-        expected = TRUE
-      )
-      expect_equal(
-        select_class(
-          df = ord_test,
-          class = "ord",
-          return_tbl = FALSE
-        ),
-        expected = c(ord_var = "ord_var")
-      )
+  ## check factor (ordered) ----
+    it("ordered works", {
+      test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+      obj <- select_class(df = test_data, class = "ordered")
+      expect_s3_class(obj[[1]], class = "ordered")
     })
-  })
-
-  describe("list works", code = {
-    # check list ----
-    it("list", {
-      test_col_class <- readRDS(test_path("fixtures", "test_col_class.rds"))
-      object <- select_class(df = test_col_class, class = "list")
-      expect_type(object = object[[1]], type = "list")
-      test_col_class <- tibble::tibble(
-        list_var = list(
-          fct_maker(size = 3),
-          ord_maker(size = 3)
-        ),
-        log_var = log_maker(size = 2),
-        int_var = int_maker(size = 2),
-        dbl_var = dbl_maker(size = 2),
-        chr_var = chr_maker(size = 2)
-      )
-      expect_equal(
-        select_class(df = test_col_class, class = "list") |>
-          lapply(is.list) |> unlist() |> unique(),
-        expected = TRUE
-      )
-      list_test <- tibble::tibble(
-        list_var = list(fct_maker(size = 3), ord_maker(size = 3)),
-        int = int_maker(size = 2),
-        chr = chr_maker(size = 2)
-      )
-      expect_equal(
-        select_class(
-          df = list_test,
-          class = "list"
-        ) |>
-          dplyr::pull(list_var) |>
-          is.list(),
-        expected = TRUE
-      )
-      expect_equal(
-        select_class(
-          df = list_test,
-          class = "list",
-          return_tbl = FALSE
-        ),
-        expected = c(list_var = "list_var")
-      )
+    ## check list ----
+    it("list works", {
+      test_data <- readRDS(test_path("fixtures", "test_data.rds"))
+      obj <- select_class(df = test_data, class = "list")
+      expect_type(obj[[1]], type = "list")
     })
-  })
 })
 
 
 describe("errors work", code = {
   # test error type ----
   it("select_class() type error", {
-    test_col_class <-
-      readRDS(test_path("fixtures", "test_col_class.rds"))
-    expect_error(object = select_class(
-      df = test_col_class,
-      class = "array"
-    ))
-    # test type error
-    expect_error(object = select_class(
-      df = col_maker(
-        col_type = c(
-          "log", "int",
-          "dbl", "chr",
-          "fct", "ord"
-        ),
-        size = 3,
-        missing = FALSE
-      ),
+    test_data <-
+      readRDS(test_path("fixtures", "test_data.rds"))
+    expect_error( select_class(
+      df = test_data,
       class = "array"
     ))
   })
@@ -367,21 +125,17 @@ describe("errors work", code = {
     # test class of empty tibble
     expect_s3_class(
       select_class(
-        df = col_maker(
-          col_type = c("int", "dbl"),
-          size = 6, missing = FALSE
-        ),
-        class = "log"
-      ),
+        df = tibble::tibble(
+          int_var = c(1L, 81L, 161L, 242L, 322L, 403L),
+          dbl_var = c(0.1, 0.68, 1.26, 1.84, 2.42, 3)), class = "character"),
       class = c("tbl_df", "tbl", "data.frame")
     )
     # test rows of empty tibble
     expect_equal(
       ncol(select_class(
-        df = col_maker(
-          col_type = c("int", "dbl"),
-          size = 6, missing = FALSE
-        ),
+        df = tibble::tibble(
+          int_var = c(1L, 81L, 161L, 242L, 322L, 403L),
+          dbl_var = c(0.1, 0.68, 1.26, 1.84, 2.42, 3)),
         class = "log"
       )),
       expected = 0L

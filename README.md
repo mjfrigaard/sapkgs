@@ -20,10 +20,15 @@ remotes::install_github('mjfrigaard/sapkgs')
 # R files
 
     #> R/
+    #> ├── app_server.R
+    #> ├── app_ui.R
     #> ├── check_binary_vec.R
     #> ├── check_facet_vec.R
     #> ├── make_binary_vec.R
     #> ├── make_facet_vec.R
+    #> ├── mod_cols.R
+    #> ├── mod_data.R
+    #> ├── mod_var.R
     #> ├── nin.R
     #> ├── pull_binary_cols.R
     #> ├── pull_cat_cols.R
@@ -33,7 +38,8 @@ remotes::install_github('mjfrigaard/sapkgs')
     #> ├── select_class.R
     #> ├── test_utils.R
     #> ├── tidy_funs.R
-    #> └── utap-package.R
+    #> ├── utap-package.R
+    #> └── utapApp.R
 
 # Unit tests
 
