@@ -1,17 +1,28 @@
-Package: skimapp
-Title: Shiny app-packages (skim variable app)
+Package: msap
+Title: Apps from Mastering Shiny
 Version: 0.0.0.9000
-Authors@R: 
-    person("Martin", "Frigaard", , "mjfrigaard@pm.me", role = c("aut", "cre"))
-Description: Select a package, dataset, and variable and view a skim. 
+Author: Martin Frigaard
+Maintainer: Martin Frigaard <mjfrigaard@pm.me>
+Description: This shiny app-package contains the various apps in Mastering Shiny
+    by Hadley Wickham (2021) <https://mastering-shiny.org/>. 
 License: MIT + file LICENSE
 Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
-Imports: 
-    bslib,
-    shiny,
-    skimr
-Suggests: 
-    testthat (>= 3.0.0)
+Depends: 
+    R (>= 3.5)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
+Imports: 
+    shiny,
+    dplyr,
+    rlang,
+    ggplot2,
+    janitor,
+    rsconnect,
+    stringr,
+    testthat,
+    knitr,
+    rmarkdown,
+    shinytest2
