@@ -7,7 +7,7 @@ Maintainer: Martin Frigaard <mjfrigaard@pm.me>
 Description: A series of utility functions for a shiny app developed as an R 
     package.
 License: MIT + file LICENSE
-URL: https://mjfrigaard.github.io/utap/
+URL: https://github.com/mjfrigaard/sapkgs/tree/utap
 Depends: 
     R (>= 3.5)
 Imports: 

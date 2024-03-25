@@ -11,7 +11,7 @@ A series of utility functions for a shiny app developed as an R package.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://mjfrigaard.github.io/utap/}
+  \item \url{https://github.com/mjfrigaard/sapkgs/tree/utap}
 }
 
 }
