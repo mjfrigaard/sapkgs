@@ -16,20 +16,10 @@ Shiny](https://mastering-shiny.org/index.html).
 
 ## Installation
 
-You don’t *have* to install the `mstsap` package, but you might want to
-download it as an example (or read through [this
-post](https://mjfrigaard.github.io/posts/p3-test-shiny-module-tests/) to
-learn about it’s contents).
-
 ``` r
-install.packages("remotes")
-remotes::install_github("mjfrigaard/sapkgs")
-```
-
-In the Terminal, switch to the `mstsap` branch:
-
-``` bash
-git checkout mstsap
+install.packages('remotes')
+remotes::install_github(
+  "https://github.com/mjfrigaard/sapkgs", ref = "mstsap")
 ```
 
 ## Utility function tests
