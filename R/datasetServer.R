@@ -12,12 +12,11 @@
 #' @return reactive data object from datasets package
 #' @export
 #'
-#' @importFrom shiny moduleServer reactive
 datasetServer <- function(id) {
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    shiny::reactive({
+    reactive({
           get(input$dataset, "package:datasets")
         })
 

@@ -1,3 +1,3 @@
 # Disabling shiny autoload
 
-# See ?shiny::loadSupport for more information
+# See ?loadSupport for more information

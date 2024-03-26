@@ -47,7 +47,7 @@ test_cmt <- function(test, msg) {
 Verify `NULL` 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
 
   testthat::expect_equal(input$dataset, NULL)
   test_cmt("datasetServer", "dataset$input is NULL")
@@ -57,7 +57,7 @@ shiny::testServer(datasetServer, expr = {
 Verify input 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "faithful")
   testthat::expect_equal(
     object = input$dataset,
@@ -74,7 +74,7 @@ class(datasets::airquality)
 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "airquality")
   testthat::expect_equal(
     object = class(session$returned()),
@@ -91,7 +91,7 @@ is.matrix(datasets::WorldPhones)
 ```
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "WorldPhones")
   testthat::expect_true(
     object = is.matrix(session$returned()))
@@ -107,7 +107,7 @@ typeof(datasets::mtcars)
 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "mtcars")
   expect_equal(
     object = typeof(session$returned()),
@@ -122,7 +122,7 @@ Check `dataset` input
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_equal(
     object = input$`dataset-dataset`,
@@ -135,7 +135,7 @@ Check `class` of reactive `data()`
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_true(
     object = is.data.frame(data()))
@@ -145,7 +145,7 @@ shiny::testServer(app = ds_app, expr = {
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_equal(
     object = names(data()),
@@ -157,7 +157,7 @@ shiny::testServer(app = ds_app, expr = {
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_equal(
     object = class(output$data),

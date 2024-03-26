@@ -5,11 +5,9 @@
 #
 ## usethis namespace: start
 ##
-#' @importFrom pkgload load_all
 #' @import rlang
 #' @import lobstr
-#' @importFrom dplyr select where filter pull contains mutate glimpse arrange
-#' @importFrom rsconnect deployApp
+#' @import shiny
 #'
 #'
 ##

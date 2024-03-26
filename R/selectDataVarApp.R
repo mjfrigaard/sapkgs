@@ -12,33 +12,31 @@
 #' @return shiny app
 #' @export
 #'
-#' @importFrom shiny fluidPage sidebarLayout sidebarPanel
-#' @importFrom shiny mainPanel tags verbatimTextOutput
-#' @importFrom shiny renderPrint reactiveValuesToList
-#' @importFrom shiny shinyApp
+#' @import shiny
+#'
 selectDataVarApp <- function(filter = is.numeric) {
   options(width = 65)
-  ui <- shiny::fluidPage(
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
+  ui <- fluidPage(
+    sidebarLayout(
+      sidebarPanel(
         selectDataVarUI("var")
         ),
-      shiny::mainPanel(
-        shiny::tags$br(),
-        shiny::verbatimTextOutput("out"),
-        shiny::verbatimTextOutput("vals")
+      mainPanel(
+        tags$br(),
+        verbatimTextOutput("out"),
+        verbatimTextOutput("vals")
         )
     )
   )
   server <- function(input, output, session) {
     var <- selectDataVarServer("var", filter)
-    output$out <- shiny::renderPrint(var())
+    output$out <- renderPrint(var())
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
   }
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }

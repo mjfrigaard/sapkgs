@@ -10,27 +10,28 @@
 #'
 #'
 #' @return shiny app
+#'
 #' @export
 #'
-#' @importFrom shiny verbatimTextOutput renderPrint shinyApp
+#' @import shiny
 selectVarApp <- function(filter = is.numeric) {
-  ui <- shiny::fluidPage(
+  ui <- fluidPage(
     datasetInput("data", is.data.frame),
     selectVarInput("var"),
-    shiny::verbatimTextOutput("out"),
-    shiny::verbatimTextOutput("vals")
+    verbatimTextOutput("out"),
+    verbatimTextOutput("vals")
   )
   server <- function(input, output, session) {
     data <- datasetServer("data")
     var <- selectVarServer("var", data, filter = filter)
-    output$out <- shiny::renderPrint(var())
+    output$out <- renderPrint(var())
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
   }
 
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }

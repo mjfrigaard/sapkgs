@@ -8,7 +8,7 @@
 
 `mstsap` is a collection of tests using
 [`testthat`](https://testthat.r-lib.org/) and
-[`shiny::testServer()`](https://search.r-project.org/CRAN/refmans/shiny/html/testServer.html).
+[`testServer()`](https://search.r-project.org/CRAN/refmans/shiny/html/testServer.html).
 
 The modules and applications in `mstsap` come from the [Shiny modules
 chapter](https://mastering-shiny.org/scaling-modules.html) of [Mastering
@@ -18,13 +18,18 @@ Shiny](https://mastering-shiny.org/index.html).
 
 You don’t *have* to install the `mstsap` package, but you might want to
 download it as an example (or read through [this
-post](https://mjfrigaard.github.io/posts/test-shiny-p3/) to learn about
-it’s contents).
+post](https://mjfrigaard.github.io/posts/p3-test-shiny-module-tests/) to
+learn about it’s contents).
 
 ``` r
 install.packages("remotes")
-remotes::install_github("mjfrigaard/mstsap")
-library(mstsap)
+remotes::install_github("mjfrigaard/sapkgs")
+```
+
+In the Terminal, switch to the `mstsap` branch:
+
+``` bash
+git checkout mstsap
 ```
 
 ## Utility function tests

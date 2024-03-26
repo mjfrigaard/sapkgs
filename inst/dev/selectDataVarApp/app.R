@@ -1,13 +1,30 @@
 library(shiny)
-library(gargoyle)
-source("modules.R")
-source("appUI.R")
-source("appServer.R")
 
-demoApp <- function() {
-  shiny::shinyApp(
-    ui = appUI,
-    server = appServer
+selectDataVarApp <- function(filter = is.numeric) {
+  options(width = 65)
+  ui <- fluidPage(
+    sidebarLayout(
+      sidebarPanel(
+        selectDataVarUI("var")
+        ),
+      mainPanel(
+        tags$br(),
+        verbatimTextOutput("out"),
+        verbatimTextOutput("vals")
+        )
+    )
   )
+  server <- function(input, output, session) {
+    var <- selectDataVarServer("var", filter)
+    output$out <- renderPrint(var())
+
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
+                              all.names = TRUE)
+      print(x)
+    })
+  }
+  shinyApp(ui, server)
 }
-demoApp()
+
+selectDataVarApp()

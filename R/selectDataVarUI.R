@@ -12,7 +12,7 @@
 #' @importFrom shiny tagList
 selectDataVarUI <- function(id) {
 
-  shiny::tagList(
+  tagList(
 
     datasetInput(NS(id, "data"), filter = is.data.frame),
 

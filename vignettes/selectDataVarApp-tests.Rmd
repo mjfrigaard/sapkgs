@@ -47,7 +47,7 @@ test_cmt <- function(test, msg) {
 Test `is.reactive()` on `data`
 
 ```{r}
-shiny::testServer(selectDataVarServer, 
+testServer(selectDataVarServer, 
   args = list(filter = is.numeric), expr = {
     
   testthat::expect_true(
@@ -60,7 +60,7 @@ shiny::testServer(selectDataVarServer,
 Test `is.reactive()` on `var`
 
 ```{r}
-shiny::testServer(selectDataVarServer, 
+testServer(selectDataVarServer, 
   args = list(filter = is.numeric), expr = {
 
   testthat::expect_true(
@@ -77,7 +77,7 @@ Test inputs for `var-var-var`
 
 ```{r}
 dv_app <- selectDataVarApp()
-shiny::testServer(app = dv_app, expr = {
+testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
 
@@ -93,7 +93,7 @@ Test inputs for `var-data-dataset`
 
 ```{r}
 dv_app <- selectDataVarApp()
-shiny::testServer(app = dv_app, expr = {
+testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
 
@@ -109,7 +109,7 @@ Test `is.reactive()` for `var`
 
 ```{r}
 dv_app <- selectDataVarApp()
-shiny::testServer(app = dv_app, expr = {
+testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
 

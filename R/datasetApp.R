@@ -12,15 +12,14 @@
 #' @return shiny application
 #' @export
 #'
-#' @importFrom shiny tableOutput renderTable shinyApp
-#' @importFrom shiny reactiveValuesToList renderPrint verbatimTextOutput
+#' @import shiny
 datasetApp <- function(filter = NULL) {
-  ui <- shiny::fluidPage(
+  ui <- fluidPage(
 
     datasetInput("dataset", filter = filter),
 
-    shiny::tableOutput("data"),
-    shiny::verbatimTextOutput("vals")
+    tableOutput("data"),
+    verbatimTextOutput("vals")
 
   )
 
@@ -28,16 +27,16 @@ datasetApp <- function(filter = NULL) {
 
     data <- datasetServer("dataset")
 
-    output$data <- shiny::renderTable(head(data()))
+    output$data <- renderTable(head(data()))
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x, width = 30, max.levels = NULL)
     }, width = 30)
 
   }
 
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 
 }

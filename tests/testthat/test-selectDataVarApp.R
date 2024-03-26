@@ -1,5 +1,5 @@
 dv_app <- selectDataVarApp()
-shiny::testServer(app = dv_app, expr = {
+testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
   cat("\n\toutput$out:\n", output$out, "\n")

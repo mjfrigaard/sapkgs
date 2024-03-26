@@ -12,7 +12,7 @@
 #' @importFrom shiny moduleServer
 selectDataVarServer <- function(id, filter = is.numeric) {
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
     data <- datasetServer("data")
 

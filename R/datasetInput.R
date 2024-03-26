@@ -12,7 +12,6 @@
 #' @return list of data object names
 #' @export
 #'
-#' @importFrom shiny selectInput NS
 datasetInput <- function(id, filter = NULL) {
 
   names <- ls("package:datasets")
@@ -21,8 +20,8 @@ datasetInput <- function(id, filter = NULL) {
     names <- names[vapply(data, filter, logical(1))]
   }
 
-  shiny::selectInput(
-    shiny::NS(id, "dataset"),
+  selectInput(
+    NS(id, "dataset"),
     label = "Pick a dataset",
     choices = names)
 }

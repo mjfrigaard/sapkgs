@@ -17,20 +17,20 @@
 #' @importFrom shiny moduleServer observe updateSelectInput
 #' @importFrom shiny bindEvent reactive is.reactive
 selectVarServer <- function(id, data, filter = is.numeric) {
-  stopifnot(shiny::is.reactive(data))
-  stopifnot(!shiny::is.reactive(filter))
+  stopifnot(is.reactive(data))
+  stopifnot(!is.reactive(filter))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    shiny::observe({
-      shiny::updateSelectInput(
+    observe({
+      updateSelectInput(
         session = session,
         inputId = "var",
         choices = find_vars(data(), filter))
     }) |>
-      shiny::bindEvent(data())
+      bindEvent(data())
 
-    shiny::reactive(data()[[input$var]])
+    reactive(data()[[input$var]])
 
   })
 
