@@ -22,7 +22,13 @@ The goal of `st2ap` is to demonstrate how to build and test a shiny application 
 
 ## Installation
 
-You don't want to install this package, but you might want to download it as an example (or read through [this post](https://mjfrigaard.github.io/posts/testing-shiny/) to learn about it's contents).
+```{r}
+#| eval: false
+#| echo: true
+install.packages('remotes')
+remotes::install_github(
+  "https://github.com/mjfrigaard/sapkgs", ref = "st2ap")
+```
 
 ## Run the app
 
