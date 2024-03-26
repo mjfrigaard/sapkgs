@@ -24,7 +24,8 @@ The goal of the `utap` application is to demonstrate how to perform unit tests f
 
 ``` r
 install.packages('remotes')
-remotes::install_github('mjfrigaard/sapkgs')
+remotes::install_github(
+  "https://github.com/mjfrigaard/sapkgs", ref = "msst2ap")
 ```
 
 # R files

@@ -14,7 +14,8 @@ tests for Shiny utility functions with
 
 ``` r
 install.packages('remotes')
-remotes::install_github('mjfrigaard/sapkgs')
+remotes::install_github(
+  "https://github.com/mjfrigaard/sapkgs", ref = "msst2ap")
 ```
 
 # R files
