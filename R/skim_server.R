@@ -8,19 +8,17 @@
 #'
 #' @export
 #'
-#' @importFrom skimr skim_tee
-#' @importFrom lobstr tree
 #'
 skim_server <- function(input, output, session) {
 
     var <- mod_select_data_server(id = "var", pkg = "datasets", filter = is.numeric)
 
-    output$out <- shiny::renderPrint(
+    output$out <- renderPrint(
                       skimr::skim_tee(var()),
                       width = 80)
 
-    output$vals <- shiny::renderPrint({
-      vals <- shiny::reactiveValuesToList(x = input, all.names = TRUE)
+    output$vals <- renderPrint({
+      vals <- reactiveValuesToList(x = input, all.names = TRUE)
       lobstr::tree(vals)
       })
 

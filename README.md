@@ -11,9 +11,24 @@ variable.
 
 ## Installation
 
-You can install the development version of `skimapp` like so:
+You can install `skimapp` like so:
+
+1.  In Terminal:
+
+``` bash
+git clone https://github.com/mjfrigaard/sapkgs.git
+git checkout main
+cd sapkgs
+open sapkgs.Rproj
+```
+
+2.  or use `remotes` (then switch branches to `main` in Terminal):
 
 ``` r
 install.packages('remotes')
 remotes::install_github('mjfrigaard/sapkgs')
+```
+
+``` bash
+git checkout main
 ```

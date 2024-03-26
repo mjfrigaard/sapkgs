@@ -7,9 +7,10 @@
 #'
 #' @export skimVarApp
 #'
-#' @importFrom shiny shinyApp
+#' @import shiny
+#' 
 skimVarApp <- function(filter = is.numeric) {
 
-  shiny::shinyApp(ui = skim_ui, server = skim_server)
+  shinyApp(ui = skim_ui, server = skim_server)
 
 }

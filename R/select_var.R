@@ -3,15 +3,15 @@
 #' @param id namespaced id
 #'
 #' @return module UI function
+#' 
 #' @export mod_select_var_ui
 #'
-#' @importFrom shiny NS h5 code tagList selectInput
 #'
 mod_select_var_ui <- function(id) {
-  ns <- shiny::NS(id)
-  shiny::tagList(
-    shiny::h5(shiny::code("mod_select_var")),
-    shiny::selectInput(ns("select_var"),
+  ns <- NS(id)
+  tagList(
+    h5(code("mod_select_var")),
+    selectInput(ns("select_var"),
       label = "Variable",
       choices = NULL
     )
@@ -26,13 +26,11 @@ mod_select_var_ui <- function(id) {
 #'
 #' @export mod_select_var_server
 #'
-#' @importFrom shiny moduleServer observe updateSelectInput
-#' @importFrom shiny bindEvent reactive
 #'
 mod_select_var_server <- function(id, data, filter = is.numeric) {
-  shiny::moduleServer(id, function(input, output, session) {
-    shiny::observe({
-      shiny::updateSelectInput(session,
+  moduleServer(id, function(input, output, session) {
+    observe({
+      updateSelectInput(session,
         inputId = "select_var",
         choices = find_vars(
           data = data(),
@@ -40,8 +38,8 @@ mod_select_var_server <- function(id, data, filter = is.numeric) {
         )
       )
     }) |>
-      shiny::bindEvent(data())
+      bindEvent(data())
 
-    shiny::reactive(data()[[input$select_var]])
+    reactive(data()[[input$select_var]])
   })
 }

@@ -5,9 +5,9 @@
 #' @param pkg name of package
 #'
 #' @return options for choices in `shiny::selectInput()`
+#' 
 #' @export mod_ds_input_ui
 #'
-#' @importFrom shiny NS tagList selectInput code h5
 #'
 mod_ds_input_ui <- function(id, pkg, filter = NULL) {
   pkg_pos <- paste0("package:", pkg)
@@ -16,10 +16,10 @@ mod_ds_input_ui <- function(id, pkg, filter = NULL) {
     data <- lapply(names, get, pkg_pos)
     names <- names[vapply(data, filter, logical(1))]
   }
-  ns <- shiny::NS(id)
-  shiny::tagList(
-    shiny::h5(shiny::code("mod_ds_input")),
-    shiny::selectInput(
+  ns <- NS(id)
+  tagList(
+    h5(shiny::code("mod_ds_input")),
+    selectInput(
       inputId = ns("ds_input"),
       label = "Pick a dataset", choices = names
     )
@@ -33,12 +33,11 @@ mod_ds_input_ui <- function(id, pkg, filter = NULL) {
 #' @return module server function
 #' @export mod_ds_input_server
 #'
-#' @importFrom shiny moduleServer reactive
 #'
 mod_ds_input_server <- function(id, pkg) {
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
     pkg_pos <- paste0("package:", pkg)
-    shiny::reactive(
+    reactive(
       get(x = input$ds_input, pos = pkg_pos)
     )
   })
