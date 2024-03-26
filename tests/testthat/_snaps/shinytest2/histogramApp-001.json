@@ -6,7 +6,7 @@
   },
   "output": {
     "hist-hist": {
-      "src": "[image data hash: fde4089afc06a814d75c627b823d0806]",
+      "src": "[image data hash: deceeaa2fec27969326b57c10ac753a2]",
       "width": 682.6640625,
       "height": 400,
       "alt": "Plot object",
@@ -20,10 +20,10 @@
               "top": 6.24
             },
             "range": {
-              "left": 78.79664956011726,
-              "right": 642.3048029692084,
-              "bottom": 301.08,
-              "top": 77.71999999999998
+              "left": 157.4778461538461,
+              "right": 1284.668740384615,
+              "bottom": 603.1600000000001,
+              "top": 156.44
             },
             "log": {
               "x": null,
@@ -35,12 +35,12 @@
           }
         ],
         "dims": {
-          "width": 682.6640625,
-          "height": 400
+          "width": 1365.328125,
+          "height": 800
         }
       }
     },
-    "vals": "$`hist-bins`\n[1] 15\n\n$`var-var`\n[1] \"privileges\"\n\n$`data-dataset`\n[1] \"attitude\"\n"
+    "vals": "$`data-dataset`\n[1] \"attitude\"\n\n$`var-var`\n[1] \"privileges\"\n\n$`hist-bins`\n[1] 15\n"
   },
   "export": {
 

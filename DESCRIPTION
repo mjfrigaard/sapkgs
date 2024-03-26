@@ -10,6 +10,7 @@ Description: This Shiny app-package demonstrates testing with testthat and
 License: MIT + file LICENSE
 URL: https://mjfrigaard.github.io/msst2ap/
 Depends: 
+    mstsap,
     R (>= 3.5)
 Imports: 
     dplyr,
