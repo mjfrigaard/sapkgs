@@ -13,6 +13,12 @@ test a shiny application package using
 
 ## Installation
 
+``` r
+install.packages('remotes')
+remotes::install_github(
+  "https://github.com/mjfrigaard/sapkgs", ref = "tsap")
+```
+
 ## Utility function tests
 
 ``` r
