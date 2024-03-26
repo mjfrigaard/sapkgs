@@ -13,11 +13,6 @@ test a shiny application package using
 
 ## Installation
 
-You don’t *have* to install the `tsap` package, but you might want to
-download it as an example (or read through [this
-post](https://mjfrigaard.github.io/posts/test-shiny-p2/) to learn about
-it’s contents).
-
 ## Utility function tests
 
 ``` r
