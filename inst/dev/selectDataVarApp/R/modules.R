@@ -6,21 +6,21 @@ datasetInput <- function(id, filter = NULL) {
     names <- names[vapply(data, filter, logical(1))]
   }
 
-  shiny::selectInput(
-    shiny::NS(id, "dataset"),
+  selectInput(
+    NS(id, "dataset"),
     "Pick a dataset",
     choices = names)
 }
 
 datasetServer <- function(id) {
-  shiny::moduleServer(id, function(input, output, session) {
-    shiny::reactive(get(input$dataset, "package:datasets"))
+  moduleServer(id, function(input, output, session) {
+    reactive(get(input$dataset, "package:datasets"))
   })
 }
 
 selectVarInput <- function(id) {
-  shiny::selectInput(
-    shiny::NS(id, "var"),
+  selectInput(
+    NS(id, "var"),
     label = "Variable",
     choices = NULL
   )
@@ -28,27 +28,27 @@ selectVarInput <- function(id) {
 
 selectVarServer <- function(id, data, filter = is.numeric) {
 
-  stopifnot(shiny::is.reactive(data))
-  stopifnot(!shiny::is.reactive(filter))
+  stopifnot(is.reactive(data))
+  stopifnot(!is.reactive(filter))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    shiny::observe({
-      shiny::updateSelectInput(
+    observe({
+      updateSelectInput(
         session, "var",
         choices = find_vars(data(), filter))
     }) |>
-      shiny::bindEvent(data())
+      bindEvent(data())
 
     return(
-      shiny::reactive({
+      reactive({
         if (input$var %in% names(data())) {
           data()[input$var]
         } else {
           NULL
         }
       }) |>
-      shiny::bindEvent(input$var)
+      bindEvent(input$var)
     )
 
   })
@@ -61,17 +61,17 @@ find_vars <- function(data, filter = is.vector) {
 }
 
 selectDataVarUI <- function(id) {
-  shiny::tagList(
+  tagList(
     datasetInput(
-      shiny::NS(id, "data"),
+      NS(id, "data"),
         filter = is.data.frame),
     selectVarInput(
-      shiny::NS(id, "var"))
+      NS(id, "var"))
   )
 }
 selectDataVarServer <- function(id, filter = is.numeric) {
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
     data <- datasetServer("data")
     var <- selectVarServer("var", data, filter = filter)
     var

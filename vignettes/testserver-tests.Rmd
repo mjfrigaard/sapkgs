@@ -41,7 +41,7 @@ test_cmt <- function(test, msg) {
 Verify `NULL` 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
 
   testthat::expect_equal(input$dataset, NULL)
   test_cmt("datasetServer", "dataset$input is NULL")
@@ -51,7 +51,7 @@ shiny::testServer(datasetServer, expr = {
 Verify input 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "faithful")
   testthat::expect_equal(
     object = input$dataset,
@@ -68,7 +68,7 @@ class(datasets::airquality)
 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "airquality")
   testthat::expect_equal(
     object = class(session$returned()),
@@ -85,7 +85,7 @@ is.matrix(datasets::WorldPhones)
 ```
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "WorldPhones")
   testthat::expect_true(
     object = is.matrix(session$returned()))
@@ -101,7 +101,7 @@ typeof(datasets::mtcars)
 
 
 ```{r}
-shiny::testServer(datasetServer, expr = {
+testServer(datasetServer, expr = {
   session$setInputs(dataset = "mtcars")
   expect_equal(
     object = typeof(session$returned()),
@@ -116,7 +116,7 @@ Check `dataset` input
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_equal(
     object = input$`dataset-dataset`,
@@ -129,7 +129,7 @@ Check `class` of reactive `data()`
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_true(
     object = is.data.frame(data()))
@@ -139,7 +139,7 @@ shiny::testServer(app = ds_app, expr = {
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_equal(
     object = names(data()),
@@ -151,7 +151,7 @@ shiny::testServer(app = ds_app, expr = {
 
 ```{r}
 ds_app <- datasetApp()
-shiny::testServer(app = ds_app, expr = {
+testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
   testthat::expect_equal(
     object = class(output$data),
@@ -166,7 +166,7 @@ shiny::testServer(app = ds_app, expr = {
 The `selectVarServer()` function has additional arguments, so the `args` list is used (with `reactive()`):
 
 ```{r}
-shiny::testServer(selectVarServer,
+testServer(selectVarServer,
 
   args = list(data = reactive(datasets::mtcars),
               filter = is.numeric), expr = {
@@ -180,7 +180,7 @@ shiny::testServer(selectVarServer,
 Test passing different arguments to `find_vars()`
 
 ```{r}
-shiny::testServer(selectVarServer,
+testServer(selectVarServer,
   args = list(data = reactive(datasets::chickwts),
               filter = is.numeric), expr = {
   testthat::expect_equal(
@@ -193,7 +193,7 @@ shiny::testServer(selectVarServer,
 Test passing `filter` and setting `input$var`:
 
 ```{r}
-shiny::testServer(selectVarServer,
+testServer(selectVarServer,
   args = list(data = reactive(datasets::chickwts),
               filter = is.numeric), expr = {
 
@@ -207,7 +207,7 @@ shiny::testServer(selectVarServer,
 Test passing `filter`, setting `input$var`, and `session$returned()`:
 
 ```{r}
-shiny::testServer(selectVarServer,
+testServer(selectVarServer,
   args = list(data = reactive(datasets::chickwts),
               filter = is.numeric), expr = {
   session$setInputs(var = "feed")
@@ -225,7 +225,7 @@ Test `is.reactive(var)`
 
 ```{r}
 sv_app <- selectVarApp()
-shiny::testServer(app = sv_app, expr = {
+testServer(app = sv_app, expr = {
   session$setInputs(`var-var` = "Ozone",
                     `data-dataset` = "airquality")
   
@@ -238,7 +238,7 @@ Test the inputs with module namespaces
 
 ```{r}
 sv_app <- selectVarApp()
-shiny::testServer(app = sv_app, expr = {
+testServer(app = sv_app, expr = {
   session$setInputs(`var-var` = "Ozone",
                     `data-dataset` = "airquality")
 
@@ -254,7 +254,7 @@ Test `data()` is reactive
 
 ```{r}
 sv_app <- selectVarApp()
-shiny::testServer(app = sv_app, expr = {
+testServer(app = sv_app, expr = {
   session$setInputs(`var-var` = "Ozone",
                     `data-dataset` = "airquality")
 
@@ -268,7 +268,7 @@ Test `class()` of `data()`
 
 ```{r}
 sv_app <- selectVarApp()
-shiny::testServer(app = sv_app, expr = {
+testServer(app = sv_app, expr = {
   session$setInputs(`var-var` = "Ozone",
                     `data-dataset` = "airquality")
   
@@ -283,7 +283,7 @@ Test specific variables from `data()`
 
 ```{r}
 sv_app <- selectVarApp()
-shiny::testServer(app = sv_app, expr = {
+testServer(app = sv_app, expr = {
   session$setInputs(`var-var` = "Ozone",
                     `data-dataset` = "airquality")
 
@@ -302,7 +302,7 @@ shiny::testServer(app = sv_app, expr = {
 Test `is.reactive()` on `data`
 
 ```{r}
-shiny::testServer(selectDataVarServer, 
+testServer(selectDataVarServer, 
   args = list(filter = is.numeric), expr = {
     
   testthat::expect_true(
@@ -315,7 +315,7 @@ shiny::testServer(selectDataVarServer,
 Test `is.reactive()` on `var`
 
 ```{r}
-shiny::testServer(selectDataVarServer, 
+testServer(selectDataVarServer, 
   args = list(filter = is.numeric), expr = {
 
   testthat::expect_true(
@@ -332,7 +332,7 @@ Test inputs for `var-var-var`
 
 ```{r}
 dv_app <- selectDataVarApp()
-shiny::testServer(app = dv_app, expr = {
+testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
 
@@ -348,7 +348,7 @@ Test inputs for `var-data-dataset`
 
 ```{r}
 dv_app <- selectDataVarApp()
-shiny::testServer(app = dv_app, expr = {
+testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
 
@@ -364,7 +364,7 @@ Test `is.reactive()` for `var`
 
 ```{r}
 dv_app <- selectDataVarApp()
-shiny::testServer(app = dv_app, expr = {
+testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
 

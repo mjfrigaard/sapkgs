@@ -1,23 +1,23 @@
 datasetApp <- function(filter = NULL) {
-  ui <- shiny::fluidPage(
+  ui <- fluidPage(
     datasetInput("dataset", filter = is.data.frame),
-    shiny::tableOutput("data"),
+    tableOutput("data"),
 
     # for printing reactive values in application modules
-    shiny::verbatimTextOutput("vals")
+    verbatimTextOutput("vals")
   )
   server <- function(input, output, session) {
     data <- datasetServer("dataset")
-    output$data <- shiny::renderTable(head(data()))
+    output$data <- renderTable(head(data()))
 
     # for printing reactive values in application modules
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x, width = 30, max.levels = NULL)
     }, width = 30)
 
   }
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 datasetApp()

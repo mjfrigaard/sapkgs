@@ -8,7 +8,7 @@
 #' This application includes an argument for filtering objects "*limit the options to built-in datasets that are either data frames (filter = is.data.frame) or matrices (filter = is.matrix)*" displayed in the `selectInput()`.
 #'
 #' @section reactive values:
-#' The `renderPrint()` output contains the output from `shiny::reactiveValuesToList()`
+#' The `renderPrint()` output contains the output from `reactiveValuesToList()`
 #' and contains the`inputId`s for the modules in the application.
 #'
 #' @return shiny application
@@ -17,22 +17,22 @@
 #' @importFrom shiny tableOutput renderTable shinyApp
 #' @importFrom shiny reactiveValuesToList renderPrint verbatimTextOutput
 datasetApp <- function(filter = NULL) {
-  ui <- shiny::fluidPage(
+  ui <- fluidPage(
     datasetInput("dataset", filter = is.data.frame),
-    shiny::tableOutput("data"),
-    shiny::verbatimTextOutput("vals")
+    tableOutput("data"),
+    verbatimTextOutput("vals")
   )
   server <- function(input, output, session) {
 
     data <- datasetServer("dataset")
-    output$data <- shiny::renderTable(head(data()))
+    output$data <- renderTable(head(data()))
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x, width = 30, max.levels = NULL)
     }, width = 30)
 
   }
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }

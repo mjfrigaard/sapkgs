@@ -12,7 +12,7 @@
 #' @importFrom shiny tagList
 selectDataVarUI <- function(id) {
 
-  shiny::tagList(
+  tagList(
     datasetInput(NS(id, "data"), filter = is.data.frame),
     selectVarInput(NS(id, "var"))
 
@@ -33,7 +33,7 @@ selectDataVarUI <- function(id) {
 #' @importFrom shiny moduleServer
 selectDataVarServer <- function(id, filter = is.numeric) {
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
     data <- datasetServer("data")
 

@@ -1,28 +1,28 @@
 selectDataVarApp <- function(filter = is.numeric) {
-  ui <- shiny::fluidPage(
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
+  ui <- fluidPage(
+    sidebarLayout(
+      sidebarPanel(
         selectDataVarUI("var")
         ),
-      shiny::mainPanel(
-        shiny::tableOutput("out"),
+      mainPanel(
+        tableOutput("out"),
 
-        shiny::verbatimTextOutput("vals")
+        verbatimTextOutput("vals")
         )
     )
   )
   server <- function(input, output, session) {
     var <- selectDataVarServer("var", filter)
-    output$out <- shiny::renderTable(head(var()))
+    output$out <- renderTable(head(var()))
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
 
   }
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 
 selectDataVarApp()

@@ -10,21 +10,21 @@ Description: This Shiny app-package demonstrates testing with testthat and
 License: MIT + file LICENSE
 URL: https://mjfrigaard.github.io/msst2ap/
 Depends: 
-    R (>= 3.5),
-    shiny
+    R (>= 3.5)
 Imports: 
     dplyr,
-    fs,
     glue,
     lobstr,
     pkgload,
     purrr,
     rlang,
     rsconnect,
+    shiny,
     shinytest2
 Suggests: 
     chromote,
     datasets,
+    fs,
     knitr,
     remotes,
     rmarkdown,
@@ -32,8 +32,8 @@ Suggests:
     vdiffr
 VignetteBuilder: 
     knitr
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-Config/testthat/edition: 3

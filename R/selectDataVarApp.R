@@ -8,13 +8,13 @@
 #'
 #' @importFrom shiny sidebarLayout sidebarPanel mainPanel verbatimTextOutput
 DataVarUI <- function() {
-  shiny::fluidPage(
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
+  fluidPage(
+    sidebarLayout(
+      sidebarPanel(
         selectDataVarUI("var")),
-      shiny::mainPanel(
-        shiny::tableOutput("out"),
-        shiny::verbatimTextOutput("vals")
+      mainPanel(
+        tableOutput("out"),
+        verbatimTextOutput("vals")
         )
     )
   )
@@ -37,10 +37,10 @@ DataVarUI <- function() {
 DataVarServer <- function(input, output, session, filter = is.numeric) {
   var <- selectDataVarServer("var", filter = filter)
 
-  output$out <- shiny::renderTable(head(var()), width = 40)
+  output$out <- renderTable(head(var()), width = 40)
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
@@ -56,7 +56,7 @@ DataVarServer <- function(input, output, session, filter = is.numeric) {
 #' @export
 #'
 selectDataVarApp2 <- function() {
-  shiny::shinyApp(ui = DataVarUI, server = DataVarServer)
+  shinyApp(ui = DataVarUI, server = DataVarServer)
 }
 
 #' Data and variable shiny app
@@ -79,15 +79,15 @@ selectDataVarApp2 <- function() {
 #' @importFrom shiny shinyApp
 selectDataVarApp <- function(filter = is.numeric) {
   options(width = 65)
-  ui <- shiny::fluidPage(
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
+  ui <- fluidPage(
+    sidebarLayout(
+      sidebarPanel(
         selectDataVarUI("var")
         ),
-      shiny::mainPanel(
-        shiny::tags$br(),
-        shiny::tableOutput("out"),
-        shiny::verbatimTextOutput("vals")
+      mainPanel(
+        tags$br(),
+        tableOutput("out"),
+        verbatimTextOutput("vals")
         )
     )
   )
@@ -95,14 +95,14 @@ selectDataVarApp <- function(filter = is.numeric) {
 
     var <- selectDataVarServer("var", filter)
 
-    output$out <- shiny::renderTable(head(var()))
+    output$out <- renderTable(head(var()))
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
 
   }
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }

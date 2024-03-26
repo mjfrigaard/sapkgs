@@ -40,7 +40,7 @@ This vignette walks through the structure of each application using the abstract
     ```{r}
     #| eval: false
     #| echo: true
-    shiny::verbatimTextOutput("vals")
+    verbatimTextOutput("vals")
     ```
 
 -   And an accompanying `renderPrint()` in the `server`:
@@ -48,15 +48,15 @@ This vignette walks through the structure of each application using the abstract
     ```{r}
     #| eval: false
     #| echo: true
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
     ```
 
 
-Printing the output from `shiny::reactiveValuesToList()` in the top-level of the standalone function shows the namespaces and modules throughout the application. 
+Printing the output from `reactiveValuesToList()` in the top-level of the standalone function shows the namespaces and modules throughout the application. 
 
 
 ### `datasetApp()`
@@ -193,27 +193,27 @@ I've updated this with some control flow statements to ensure the variable is co
 #| eval: false 
 #| echo: true
 selectVarServer <- function(id, data, filter = is.numeric) {
-  stopifnot(shiny::is.reactive(data))
-  stopifnot(!shiny::is.reactive(filter))
+  stopifnot(is.reactive(data))
+  stopifnot(!is.reactive(filter))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    shiny::observe({
-      shiny::updateSelectInput(
+    observe({
+      updateSelectInput(
         session, "var",
         choices = find_vars(data(), filter))
     }) |>
-      shiny::bindEvent(data())
+      bindEvent(data())
 
     return(
-      shiny::reactive({
+      reactive({
         if (input$var %in% names(data())) { # <- updated with control flow
           data()[input$var] # returned as a single column
         } else {
           NULL
         }
       }) |>
-      shiny::bindEvent(input$var)
+      bindEvent(input$var)
     )
 
   })
@@ -401,7 +401,7 @@ This [`histogramApp()`](https://mastering-shiny.org/scaling-modules.html#case-st
 
 ### Adjustments 
 
-The original `histogramServer()` function uses `shiny::req()` to ensure the `x()` reactive is numeric (`is.numeric()`). It then passes this numeric vector directly to `hist()` (along with the `breaks` and title (in `main`)).
+The original `histogramServer()` function uses `req()` to ensure the `x()` reactive is numeric (`is.numeric()`). It then passes this numeric vector directly to `hist()` (along with the `breaks` and title (in `main`)).
 
 ```{r}
 #| eval: false 
@@ -420,19 +420,19 @@ histogramServer <- function(id, x, title = reactive("Histogram")) {
 }
 ```
 
-I've changed `histogramServer()` slightly: I removed the `is.numeric()` function from `shiny::req()` and use `purrr::as_vector()` to convert the single column `data.frame` to a vector:  
+I've changed `histogramServer()` slightly: I removed the `is.numeric()` function from `req()` and use `purrr::as_vector()` to convert the single column `data.frame` to a vector:  
 
 ```{r}
 #| eval: false 
 #| echo: true
 histogramServer <- function(id, x, title = reactive("Histogram")) {
-  stopifnot(shiny::is.reactive(x))
-  stopifnot(shiny::is.reactive(title))
+  stopifnot(is.reactive(x))
+  stopifnot(is.reactive(title))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    output$hist <- shiny::renderPlot({
-      shiny::req(x()) # require x() (but not numeric) 
+    output$hist <- renderPlot({
+      req(x()) # require x() (but not numeric) 
       main <- paste0(title(), " [bins =", input$bins, "]")
       hist(
         purrr::as_vector(x()), # convert the single column data.frame to a vector

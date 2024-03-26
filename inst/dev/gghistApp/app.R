@@ -1,16 +1,16 @@
 library(shiny)
 options(shiny.testmode = TRUE)
 gghistApp <- function() {
-  ui <- shiny::fluidPage(
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
+  ui <- fluidPage(
+    sidebarLayout(
+      sidebarPanel(
         datasetInput("data", is.data.frame),
         selectVarInput("var"),
       ),
-      shiny::mainPanel(
+      mainPanel(
         histogramOutput("hist"),
-        shiny::code("app vals"),
-        shiny::verbatimTextOutput("vals")
+        code("app vals"),
+        verbatimTextOutput("vals")
       )
     )
   )
@@ -23,14 +23,14 @@ gghistApp <- function() {
 
     gghistServer("hist", x)
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                           all.names = TRUE)
       print(x, width = 30, max.levels = NULL)
       }, width = 30)
 
   }
 
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 gghistApp()

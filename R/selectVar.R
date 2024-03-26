@@ -14,8 +14,8 @@
 #' @importFrom shiny selectInput NS
 selectVarInput <- function(id) {
 
-  shiny::selectInput(
-    shiny::NS(id, "var"),
+  selectInput(
+    NS(id, "var"),
     label = "Variable",
     choices = NULL)
 
@@ -46,27 +46,27 @@ selectVarInput <- function(id) {
 #' @importFrom shiny bindEvent reactive is.reactive req
 #' @importFrom purrr set_names
 selectVarServer <- function(id, data, filter = is.numeric) {
-  stopifnot(shiny::is.reactive(data))
-  stopifnot(!shiny::is.reactive(filter))
+  stopifnot(is.reactive(data))
+  stopifnot(!is.reactive(filter))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    shiny::observe({
-      shiny::updateSelectInput(
+    observe({
+      updateSelectInput(
         session, "var",
         choices = find_vars(data(), filter))
     }) |>
-      shiny::bindEvent(data())
+      bindEvent(data())
 
     return(
-      shiny::reactive({
+      reactive({
         if (input$var %in% names(data())) {
           data()[input$var]
         } else {
           NULL
         }
       }) |>
-      shiny::bindEvent(input$var)
+      bindEvent(input$var)
     )
 
   })

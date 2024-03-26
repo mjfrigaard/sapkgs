@@ -18,8 +18,8 @@ datasetInput <- function(id, filter = NULL) {
     names <- names[vapply(data, filter, logical(1))]
   }
 
-  shiny::selectInput(
-    shiny::NS(id, "dataset"),
+  selectInput(
+    NS(id, "dataset"),
     "Pick a dataset",
     choices = names)
 }
@@ -42,7 +42,7 @@ datasetInput <- function(id, filter = NULL) {
 #'
 #' @importFrom shiny moduleServer reactive
 datasetServer <- function(id) {
-  shiny::moduleServer(id, function(input, output, session) {
-    shiny::reactive(get(input$dataset, "package:datasets"))
+  moduleServer(id, function(input, output, session) {
+    reactive(get(input$dataset, "package:datasets"))
   })
 }

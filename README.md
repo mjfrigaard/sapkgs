@@ -18,16 +18,13 @@ Shiny.](https://mastering-shiny.org/scaling-modules.html)
 You can install `msst2ap` from GitHub using the code below:
 
 ``` r
-remotes::install_github("mjfrigaard/msst2ap",
-  force = TRUE, quiet = TRUE
-)
+install.packages('remotes')
+remotes::install_github(
+  "https://github.com/mjfrigaard/sapkgs", ref = "msst2ap")
 ```
 
 ``` r
 library(msst2ap)
-#> Loading required package: shiny
-#> Loading required package: shinytest2
-#> Loading required package: testthat
 ```
 
 ## Set up
@@ -97,7 +94,7 @@ package:
 
 ``` default
 Warning message:
-In shiny::loadSupport(app_dir, renv = renv, globalrenv = globalrenv) :
+In loadSupport(app_dir, renv = renv, globalrenv = globalrenv) :
   Loading R/ subdirectory for Shiny application, but this directory appears to 
 contain an R package. Sourcing files in R/ may cause unexpected behavior.
 ```

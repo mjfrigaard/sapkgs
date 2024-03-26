@@ -1,14 +1,14 @@
 histogramApp <- function() {
-  ui <- shiny::fluidPage(
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
+  ui <- fluidPage(
+    sidebarLayout(
+      sidebarPanel(
         datasetInput("data", is.data.frame),
         selectVarInput("var"),
       ),
-      shiny::mainPanel(
+      mainPanel(
         histogramOutput("hist"),
 
-        shiny::verbatimTextOutput("vals")
+        verbatimTextOutput("vals")
       )
     )
   )
@@ -18,14 +18,14 @@ histogramApp <- function() {
     x <- selectVarServer("var", data)
     histogramServer("hist", x)
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
 
   }
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 
 histogramApp()

@@ -19,7 +19,7 @@ This application includes an argument for filtering objects "\emph{limit the opt
 
 \section{reactive values}{
 
-The \code{renderPrint()} output contains the output from \code{shiny::reactiveValuesToList()}
+The \code{renderPrint()} output contains the output from \code{reactiveValuesToList()}
 and contains the\code{inputId}s for the modules in the application.
 }
 

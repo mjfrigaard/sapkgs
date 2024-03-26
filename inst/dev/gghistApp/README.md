@@ -6,27 +6,27 @@ The `selectVarServer()` module server function has been slightly altered to retu
 
 ``` r
 selectVarServer <- function(id, data, filter = is.numeric) {
-  stopifnot(shiny::is.reactive(data))
-  stopifnot(!shiny::is.reactive(filter))
+  stopifnot(is.reactive(data))
+  stopifnot(!is.reactive(filter))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    shiny::observe({
-      shiny::updateSelectInput(
+    observe({
+      updateSelectInput(
         session, "var",
         choices = find_vars(data(), filter))
     }) |>
-      shiny::bindEvent(data())
+      bindEvent(data())
 
     return(
-      shiny::reactive({
+      reactive({
         if (input$var %in% names(data())) {
           data()[input$var]
         } else {
           NULL
         }
       }) |>
-      shiny::bindEvent(input$var)
+      bindEvent(input$var)
     )
 
   })
@@ -38,17 +38,17 @@ The `gghistServer()` module server function can use `histogramOutput()` UI funct
 ``` r
 gghistServer <- function(id, x, title = reactive("Histogram")) {
 
-    stopifnot(shiny::is.reactive(x))
-    stopifnot(shiny::is.reactive(title))
+    stopifnot(is.reactive(x))
+    stopifnot(is.reactive(title))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    plot_obj <- shiny::reactive({
-                  shiny::req(x())
+    plot_obj <- reactive({
+                  req(x())
                 purrr::as_vector(x())})
 
-    output$hist <- shiny::renderPlot({
-      shiny::req(x())
+    output$hist <- renderPlot({
+      req(x())
       ggplot2::ggplot(
         mapping =
           ggplot2::aes(plot_obj())) +
@@ -59,10 +59,10 @@ gghistServer <- function(id, x, title = reactive("Histogram")) {
             x = names(x())) +
           ggplot2::theme_minimal()
     }, res = 124) |>
-      shiny::bindEvent(c(x(), input$bins),
+      bindEvent(c(x(), input$bins),
         ignoreNULL = TRUE)
         
-    shiny::exportTestValues(
+    exportTestValues(
       x = x(),
       plot_obj = plot_obj()
     )
@@ -77,15 +77,15 @@ The standalone application function also includes a printed call to `reactiveVal
 library(shiny)
 options(shiny.testmode = TRUE)
 gghistApp <- function() {
-  ui <- shiny::fluidPage(
-    shiny::sidebarLayout(
-      shiny::sidebarPanel(
+  ui <- fluidPage(
+    sidebarLayout(
+      sidebarPanel(
         datasetInput("data", is.data.frame),
         selectVarInput("var"),
       ),
-      shiny::mainPanel(
+      mainPanel(
         histogramOutput("hist"),
-        shiny::verbatimTextOutput("vals")
+        verbatimTextOutput("vals")
       )
     )
   )
@@ -98,15 +98,15 @@ gghistApp <- function() {
 
     gghistServer("hist", x)
 
-    output$vals <- shiny::renderPrint({
-      x <- shiny::reactiveValuesToList(input,
+    output$vals <- renderPrint({
+      x <- reactiveValuesToList(input,
                           all.names = TRUE)
       print(x, width = 30, max.levels = NULL)
       }, width = 30)
 
   }
 
-  shiny::shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 gghistApp()
 ```

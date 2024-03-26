@@ -6,48 +6,48 @@ datasetInput <- function(id, filter = NULL) {
     names <- names[vapply(data, filter, logical(1))]
   }
 
-  shiny::selectInput(
-    shiny::NS(id, "dataset"),
+  selectInput(
+    NS(id, "dataset"),
     "Pick a dataset",
     choices = names)
 }
 datasetServer <- function(id) {
-  shiny::moduleServer(id, function(input, output, session) {
-    shiny::reactive(get(input$dataset, "package:datasets"))
+  moduleServer(id, function(input, output, session) {
+    reactive(get(input$dataset, "package:datasets"))
   })
 }
 
 
 selectVarInput <- function(id) {
-  shiny::selectInput(
-    shiny::NS(id, "var"),
+  selectInput(
+    NS(id, "var"),
     label = "Variable",
     choices = NULL
   )
 }
 selectVarServer <- function(id, data, filter = is.numeric) {
 
-  stopifnot(shiny::is.reactive(data))
-  stopifnot(!shiny::is.reactive(filter))
+  stopifnot(is.reactive(data))
+  stopifnot(!is.reactive(filter))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    shiny::observe({
-      shiny::updateSelectInput(
+    observe({
+      updateSelectInput(
         session, "var",
         choices = find_vars(data(), filter))
     }) |>
-      shiny::bindEvent(data())
+      bindEvent(data())
 
     return(
-      shiny::reactive({
+      reactive({
         if (input$var %in% names(data())) {
           data()[input$var]
         } else {
           NULL
         }
       }) |>
-      shiny::bindEvent(input$var)
+      bindEvent(input$var)
     )
 
   })
@@ -60,25 +60,25 @@ find_vars <- function(data, filter = is.vector) {
 }
 
 histogramOutput <- function(id) {
-  shiny::tagList(
-    shiny::numericInput(
-      shiny::NS(id, "bins"),
+  tagList(
+    numericInput(
+      NS(id, "bins"),
       label = "bins",
       value = 10,
       min = 1,
       step = 1
     ),
-    shiny::plotOutput(
-      shiny::NS(id, "hist"))
+    plotOutput(
+      NS(id, "hist"))
   )
 }
 histogramServer <- function(id, x, title = reactive("Histogram")) {
-  stopifnot(shiny::is.reactive(x))
-  stopifnot(shiny::is.reactive(title))
+  stopifnot(is.reactive(x))
+  stopifnot(is.reactive(title))
 
-  shiny::moduleServer(id, function(input, output, session) {
-    output$hist <- shiny::renderPlot({
-        shiny::req(x())
+  moduleServer(id, function(input, output, session) {
+    output$hist <- renderPlot({
+        req(x())
         main <- paste0(title(), " [", input$bins, "]")
         hist(purrr::as_vector(x()),
           breaks = input$bins,
@@ -86,8 +86,8 @@ histogramServer <- function(id, x, title = reactive("Histogram")) {
         )
       }, res = 96)
 
-    output$data <- shiny::renderPrint({
-      shiny::req(x())
+    output$data <- renderPrint({
+      req(x())
       print(head(x()))
     })
   })

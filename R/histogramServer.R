@@ -12,13 +12,13 @@
 #' @importFrom purrr as_vector
 #'
 histogramServer <- function(id, x, title = reactive("Histogram")) {
-  stopifnot(shiny::is.reactive(x))
-  stopifnot(shiny::is.reactive(title))
+  stopifnot(is.reactive(x))
+  stopifnot(is.reactive(title))
 
-  shiny::moduleServer(id, function(input, output, session) {
+  moduleServer(id, function(input, output, session) {
 
-    output$hist <- shiny::renderPlot({
-      shiny::req(x())
+    output$hist <- renderPlot({
+      req(x())
       main <- paste0(title(), " [bins =", input$bins, "]")
       hist(purrr::as_vector(x()),
         breaks = input$bins,
