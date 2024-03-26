@@ -1,5 +1,9 @@
 library(shiny)
 
+options(shiny.testmode = TRUE)
+
+source("modules.R")
+
 selectDataVarApp <- function(filter = is.numeric) {
   options(width = 65)
   ui <- fluidPage(

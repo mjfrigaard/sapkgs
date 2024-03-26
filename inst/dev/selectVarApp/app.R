@@ -2,6 +2,8 @@ library(shiny)
 
 source("modules.R")
 
+options(shiny.testmode = TRUE)
+
 selectVarApp <- function(filter = is.numeric) {
   ui <- fluidPage(
     datasetInput("data", is.data.frame),

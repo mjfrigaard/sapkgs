@@ -2,6 +2,8 @@ library(shiny)
 
 source("modules.R")
 
+options(shiny.testmode = TRUE)
+
 datasetApp <- function(filter = NULL) {
   ui <- fluidPage(
 
