@@ -1,0 +1,23 @@
+---
+title: "st2ap"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{st2ap}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+```{r pkg}
+library(st2ap)
+```
+

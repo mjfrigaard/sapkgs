@@ -13,33 +13,41 @@ knitr::opts_chunk$set(
 )
 ```
 
-# skimapp
+# `st2ap`
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `skimapp` is to select a dataset and present a `skim` of a variable.    
+The goal of `st2ap` is to demonstrate how to build and test a shiny application using `usethis`, `shiny::testServer()`, and `shinytest2`.
 
 ## Installation
 
-You can install `skimapp` like so:
+You don't want to install this package, but you might want to download it as an example (or read through [this post](https://mjfrigaard.github.io/posts/testing-shiny/) to learn about it's contents).
 
-1. In Terminal: 
+## Run the app
 
-```bash
-git clone https://github.com/mjfrigaard/sapkgs.git
-git checkout main
-cd sapkgs
-open sapkgs.Rproj
+```{r}
+#| eval: false
+st2ap::strApp()
 ```
 
-2. or use `remotes` (then switch branches to `main` in Terminal):
+# Unit tests 
 
-``` r
-install.packages('remotes')
-remotes::install_github('mjfrigaard/sapkgs')
+```{r}
+#| echo: false
+fs::dir_tree("tests/testthat/", regexp = "^tests/testthat/test-")
 ```
 
-```bash
-git checkout main
+
+# Shiny server tests 
+
+Check the shiny `testServer()` tests for `mod_var_input_server()` and `mod_display_plot_server()` in
+
+```{r}
+#| echo: false
+fs::dir_tree("tests/testthat/", regexp = "server.R$")
 ```
+
+
+
+
