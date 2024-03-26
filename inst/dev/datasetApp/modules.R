@@ -5,7 +5,6 @@ datasetInput <- function(id, filter = NULL) {
     data <- lapply(names, get, "package:datasets")
     names <- names[vapply(data, filter, logical(1))]
   }
-
   selectInput(
     NS(id, "dataset"),
     label = "Pick a dataset",
@@ -15,7 +14,6 @@ datasetInput <- function(id, filter = NULL) {
 datasetServer <- function(id) {
 
   moduleServer(id, function(input, output, session) {
-
     reactive({
           get(input$dataset, "package:datasets")
         })
