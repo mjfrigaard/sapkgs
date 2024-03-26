@@ -28,7 +28,7 @@ selectDataVarApp <- function(filter = is.numeric) {
       print(x)
     })
   }
-  shinyApp(ui, server)
+  shinyApp(ui, server, options = list("test.mode" = TRUE))
 }
 
 selectDataVarApp()

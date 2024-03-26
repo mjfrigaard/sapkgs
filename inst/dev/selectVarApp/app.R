@@ -2,8 +2,6 @@ library(shiny)
 
 source("modules.R")
 
-options(shiny.testmode = TRUE)
-
 selectVarApp <- function(filter = is.numeric) {
   ui <- fluidPage(
     datasetInput("data", is.data.frame),
@@ -21,7 +19,7 @@ selectVarApp <- function(filter = is.numeric) {
       print(x)
     })
   }
-  shinyApp(ui, server)
+  shinyApp(ui, server, options = list("test.mode" = TRUE))
 }
 
 selectVarApp()

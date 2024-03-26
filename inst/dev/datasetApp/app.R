@@ -28,7 +28,7 @@ datasetApp <- function(filter = NULL) {
 
   }
 
-  shinyApp(ui, server)
+  shinyApp(ui, server, options = list("test.mode" = TRUE))
 
 }
 
