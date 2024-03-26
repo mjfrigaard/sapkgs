@@ -7,8 +7,8 @@ test_that("{shinytest2}: datasetApp", {
   app <- AppDriver$new(app_dir = ds_app, height = 600, width = 800)
   app$set_inputs(`dataset-dataset` = "attitude")
   app_values <- app$get_values()
-  # waldo::compare(x = app_values$input$`dataset-dataset`,
-  #                y = "attitude")
+  waldo::compare(x = app_values$input$`dataset-dataset`,
+                 y = "attitude")
   expect_equal(
     object = app_values$input$`dataset-dataset`,
     expected = "attitude")

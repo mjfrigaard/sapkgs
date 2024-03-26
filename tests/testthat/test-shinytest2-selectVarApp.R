@@ -15,7 +15,7 @@ test_that("{shinytest2}: selectVarApp", {
   expect_true(
     object = is.data.frame(app_values$export$data))
   expect_true(
-    object = ncol(app_values$export$var) == 1)
+    object = is.numeric(app_values$export$var))
   
   app$stop()
 })
