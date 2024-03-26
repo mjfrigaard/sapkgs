@@ -23,11 +23,6 @@ Get dataset structures from R package
 \item \code{Class}: class of dataset
 \item \code{Columns}: total columns
 \item \code{Rows}: total rows
-\item \code{Logical}: total logical columns
-\item \code{Numeric}: total numeric columns
-\item \code{Character}: total character columns
-\item \code{Factor}: total factor columns
-\item \code{List}: total list columns
 }
 }
 

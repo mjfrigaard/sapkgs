@@ -20,13 +20,12 @@ installed with \code{requireNamespace(quietly = TRUE)}.
 }
 \examples{
 # remove from ns
-unloadNamespace("fs")
 unloadNamespace("box")
 # with single pkg
-check_pkg_ns("fs")
+check_pkg_ns("box")
 # remove again
-unloadNamespace("fs")
+unloadNamespace("box")
 # with multiple pkgs
-pkgs <- c("fs", "box")
+pkgs <- c("snakecase", "box")
 check_pkg_ns(pkgs)
 }

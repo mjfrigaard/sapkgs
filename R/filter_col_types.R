@@ -7,7 +7,6 @@
 #' @return data.frame/tibble filtered by function
 #' @export filter_col_types
 #'
-#' @importFrom rlang as_function
 #'
 #' @examples
 #' filter_col_types(movies)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pkg_data_results.R
 \name{pkg_data_results}
 \alias{pkg_data_results}
-\title{Get results from \verb{data(package = [package])}}
+\title{Get the results from \verb{data(package = [package])}}
 \usage{
 pkg_data_results(pkg)
 }
@@ -13,7 +13,7 @@ pkg_data_results(pkg)
 metadata table of data object
 }
 \description{
-Get results from \verb{data(package = [package])}
+Get the results from \verb{data(package = [package])}
 }
 \examples{
 pkg_data_results("lubridate")

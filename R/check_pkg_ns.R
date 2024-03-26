@@ -13,34 +13,54 @@
 #'
 #' @examples
 #' # remove from ns
-#' unloadNamespace("fs")
 #' unloadNamespace("box")
 #' # with single pkg
-#' check_pkg_ns("fs")
+#' check_pkg_ns("box")
 #' # remove again
-#' unloadNamespace("fs")
+#' unloadNamespace("box")
 #' # with multiple pkgs
-#' pkgs <- c("fs", "box")
+#' pkgs <- c("snakecase", "box")
 #' check_pkg_ns(pkgs)
 check_pkg_ns <- function(pkg, quiet = FALSE) {
-  if (isFALSE(quiet)) {
+  if (!quiet) {
     # with messages
     if (!isNamespaceLoaded(pkg)) {
       if (requireNamespace(pkg, quietly = FALSE)) {
-        cat(paste0(pkg, " namespace loaded\n"))
+        cli::cli_inform(paste0(pkg, " namespace loaded\n"))
       } else {
-        stop(paste0(pkg, " not available"))
+        cli::cli_abort(paste0(pkg, " not available"))
       }
     } else {
-      cat(paste0("Package ", pkg, " loaded\n"))
+      cli::cli_inform(paste0("Package ", pkg, " loaded\n"))
     }
   } else {
     # without messages
     if (!isNamespaceLoaded(pkg)) {
-      if (requireNamespace(pkg, quietly = TRUE)) {
-      } else {
-        stop(paste0(pkg, " not available"))
+      if (!requireNamespace(pkg, quietly = TRUE)) {
+        cli::cli_abort(paste0(pkg, " not available"))
       }
     }
   }
 }
+# check_pkg_ns <- function(pkg, quiet = FALSE) {
+#   if (isFALSE(quiet)) {
+#     # with messages
+#     if (!isNamespaceLoaded(pkg)) {
+#       if (requireNamespace(pkg, quietly = FALSE)) {
+#         cat(paste0(pkg, " namespace loaded\n"))
+#       } else {
+#         stop(paste0(pkg, " not available"))
+#       }
+#     } else {
+#       cat(paste0("Package ", pkg, " loaded\n"))
+#     }
+#   } else {
+#     # without messages
+#     if (!isNamespaceLoaded(pkg)) {
+#       if (requireNamespace(pkg, quietly = TRUE)) {
+#       } else {
+#         stop(paste0(pkg, " not available"))
+#       }
+#     }
+#   }
+# }

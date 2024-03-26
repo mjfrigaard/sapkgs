@@ -19,5 +19,7 @@ count of columns by type
 Get number of data.frame columns by type
 }
 \examples{
+require(dplyr)
 col_type_count(mtcars, "num")
+col_type_count(dplyr::starwars, "chr")
 }
