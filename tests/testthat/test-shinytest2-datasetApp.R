@@ -3,8 +3,8 @@ library(shinytest2)
 library(chromote)
 
 test_that("{shinytest2}: datasetApp", {
-  ds_app <- mstsap::datasetApp()
-  app <- AppDriver$new(app_dir = ds_app, height = 600, width = 800)
+  app <- AppDriver$new(app_dir = system.file("dev", "datasetApp", 
+                       package = "mstsap"), height = 600, width = 800)
   app$set_inputs(`dataset-dataset` = "attitude")
   app_values <- app$get_values()
   waldo::compare(x = app_values$input$`dataset-dataset`,
