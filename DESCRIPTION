@@ -8,29 +8,26 @@ Description: This Shiny app-package demonstrates testing with testthat and
     shinytest2 using the examples from from Mastering Shiny
     (mastering-shiny.org).
 License: MIT + file LICENSE
-URL: https://mjfrigaard.github.io/msst2ap/
+URL: https://github.com/mjfrigaard/sapkgs/tree/msst2ap
 Depends: 
     mstsap,
     R (>= 3.5)
 Imports: 
-    dplyr,
     glue,
-    lobstr,
-    pkgload,
     purrr,
-    rlang,
-    rsconnect,
     shiny,
     shinytest2
 Suggests: 
     chromote,
     datasets,
+    dplyr,
     fs,
     knitr,
-    remotes,
+    lobstr,
     rmarkdown,
     testthat,
-    vdiffr
+    vdiffr,
+    waldo
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

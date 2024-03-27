@@ -1,8 +1,10 @@
 library(shinytest2)
-# remotes::install_github("rstudio/chromote", force = TRUE, quiet = TRUE)
+# remotes::install_github("rstudio/chromote", 
+#                         force = TRUE, 
+#                         quiet = TRUE)
 library(chromote)
 
-test_that("{shinytest2}: datasetApp", {
+test_that("mstsap::datasetApp", {
   app <- AppDriver$new(app_dir = system.file("dev", "datasetApp", 
                        package = "mstsap"), height = 600, width = 800)
   app$set_inputs(`dataset-dataset` = "attitude")

@@ -11,7 +11,7 @@ This Shiny app-package demonstrates testing with testthat and shinytest2 using t
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://mjfrigaard.github.io/msst2ap/}
+  \item \url{https://github.com/mjfrigaard/sapkgs/tree/msst2ap}
 }
 
 }
