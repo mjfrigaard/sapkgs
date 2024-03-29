@@ -4,7 +4,6 @@ find_vars <- function(data, filter) {
   names(data)[vapply(data, filter, logical(1))]
 }
 
-
 datasetInput <- function(id, filter = NULL) {
   names <- ls("package:datasets")
   if (!is.null(filter)) {
@@ -35,7 +34,6 @@ selectVarInput <- function(id) {
 selectVarServer <- function(id, data, filter = is.numeric) {
   stopifnot(is.reactive(data))
   stopifnot(!is.reactive(filter))
-
   moduleServer(id, function(input, output, session) {
     observe({
       updateSelectInput(
@@ -44,7 +42,6 @@ selectVarServer <- function(id, data, filter = is.numeric) {
         choices = find_vars(data(), filter))
     }) |>
       bindEvent(data())
-
     reactive(data()[[input$var]])
   })
 

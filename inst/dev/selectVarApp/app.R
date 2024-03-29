@@ -1,6 +1,6 @@
 library(shiny)
 
-source("modules.R")
+# source("modules.R")
 
 selectVarApp <- function(filter = is.numeric) {
   ui <- fluidPage(
@@ -10,7 +10,6 @@ selectVarApp <- function(filter = is.numeric) {
     verbatimTextOutput("vals")
   )
   server <- function(input, output, session) {
-
     data <- datasetServer("data")
     var <- selectVarServer("var", data, filter = filter)
 
