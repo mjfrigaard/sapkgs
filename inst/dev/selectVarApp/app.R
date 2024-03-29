@@ -1,6 +1,7 @@
 library(shiny)
 
-# source("modules.R")
+source("utils.R")
+source("modules.R")
 
 selectVarApp <- function(filter = is.numeric) {
   ui <- fluidPage(
@@ -14,7 +15,6 @@ selectVarApp <- function(filter = is.numeric) {
     var <- selectVarServer("var", data, filter = filter)
 
     output$out <- renderPrint(var())
-
     output$vals <- renderPrint({
       x <- reactiveValuesToList(input,
                               all.names = TRUE)
@@ -25,7 +25,6 @@ selectVarApp <- function(filter = is.numeric) {
       var = var(),
       data = data()
     )
-
   }
   shinyApp(ui, server, options = list("test.mode" = TRUE))
 }

@@ -1,9 +1,3 @@
-find_vars <- function(data, filter) {
-  stopifnot(is.data.frame(data))
-  stopifnot(is.function(filter))
-  names(data)[vapply(data, filter, logical(1))]
-}
-
 datasetInput <- function(id, filter = NULL) {
   names <- ls("package:datasets")
   if (!is.null(filter)) {
@@ -44,5 +38,4 @@ selectVarServer <- function(id, data, filter = is.numeric) {
       bindEvent(data())
     reactive(data()[[input$var]])
   })
-
 }

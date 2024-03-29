@@ -31,10 +31,17 @@ selectVarInput <- function(id) {
     choices = NULL)
 }
 
-selectDataVarServer <- function(id, filter = is.numeric) {
+selectVarServer <- function(id, data, filter = is.numeric) {
+  stopifnot(is.reactive(data))
+  stopifnot(!is.reactive(filter))
   moduleServer(id, function(input, output, session) {
-    data <- datasetServer("data")
-    var <- selectVarServer("var", data, filter = filter)
-    var
+    observe({
+      updateSelectInput(
+        session = session,
+        inputId = "var",
+        choices = find_vars(data(), filter))
+    }) |>
+      bindEvent(data())
+    reactive(data()[[input$var]])
   })
 }
