@@ -13,14 +13,12 @@
 #'
 #' @export histogramApp
 #'
-#' @importFrom shiny fluidPage sidebarLayout sidebarPanel
-#' @importFrom shiny mainPanel
 histogramApp <- function() {
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
-        datasetInput("data", is.data.frame),
-        selectVarInput("var"),
+        mstsap::datasetInput("data", is.data.frame),
+        mstsap::selectVarInput("var"),
       ),
       mainPanel(
         histogramOutput("hist"),
@@ -30,8 +28,8 @@ histogramApp <- function() {
   )
 
   server <- function(input, output, session) {
-    data <- datasetServer("data")
-    x <- selectVarServer("var", data)
+    data <- mstsap::datasetServer("data")
+    x <- mstsap::selectVarServer("var", data)
     histogramServer("hist", x)
 
     output$vals <- renderPrint({

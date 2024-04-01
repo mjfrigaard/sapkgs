@@ -3,12 +3,12 @@ library(shinytest2)
 library(chromote)
 
 test_that("mstsap::selectVarApp", {
-  app <- AppDriver$new(system.file("dev", "selectVarApp",
-                       package = "mstsap"),
-    height = 800,
-    width = 1200
-  )
-  app$view()
+  app_pth <- system.file("dev", "selectVarApp", package = "mstsap")
+  app <- AppDriver$new(app_pth, height = 1200, width = 1000)
+  # app$view()
+  expect_equal(app$get_window_size(), 
+                 list(width = 1000L, height = 1200L))
+  expect_equal(app$get_dir(), app_pth)
   app$set_inputs(`data-dataset` = "mtcars")
   app$set_inputs(`var-var` = "wt")
   app_values <- app$get_values()
@@ -16,5 +16,5 @@ test_that("mstsap::selectVarApp", {
     object = is.data.frame(app_values$export$data))
   expect_true(
     object = is.numeric(app_values$export$var))
-  
+  app$stop()
 })

@@ -1,11 +1,11 @@
-# gghistApp
+# ggHistApp
 
 This shiny application is a modified version of the [`histogramApp()`](https://mastering-shiny.org/scaling-modules.html#case-study-histogram) to use `ggplot2` functions. 
 
 The `selectVarServer()` module server function has been slightly altered to return a single column `data.frame` (as opposed to the original vector):
 
 ``` r
-selectVarServer <- function(id, data, filter = is.numeric) {
+ggSelectVarServer <- function(id, data, filter = is.numeric) {
   stopifnot(is.reactive(data))
   stopifnot(!is.reactive(filter))
 
@@ -33,10 +33,10 @@ selectVarServer <- function(id, data, filter = is.numeric) {
 }
 ```
 
-The `gghistServer()` module server function can use `histogramOutput()` UI function and the output from `selectVarServer()`: 
+The `ggHistServer()` module server function can use `histogramOutput()` UI function and the output from `selectVarServer()`: 
 
 ``` r
-gghistServer <- function(id, x, title = reactive("Histogram")) {
+ggHistServer <- function(id, x, title = reactive("Histogram")) {
 
     stopifnot(is.reactive(x))
     stopifnot(is.reactive(title))
@@ -76,7 +76,7 @@ The standalone application function also includes a printed call to `reactiveVal
 ``` r
 library(shiny)
 options(shiny.testmode = TRUE)
-gghistApp <- function() {
+ggHistApp <- function() {
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
@@ -93,10 +93,8 @@ gghistApp <- function() {
   server <- function(input, output, session) {
 
     data <- datasetServer("data")
-
-    x <- selectVarServer("var", data)
-
-    gghistServer("hist", x)
+    x <- ggSelectVarServer("var", data)
+    ggHistServer("hist", x)
 
     output$vals <- renderPrint({
       x <- reactiveValuesToList(input,
@@ -108,7 +106,7 @@ gghistApp <- function() {
 
   shinyApp(ui, server)
 }
-gghistApp()
+ggHistApp()
 ```
 
 

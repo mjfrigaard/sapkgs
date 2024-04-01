@@ -51,14 +51,14 @@ The output from `devtools::test()` is below:
 ℹ Testing msst2ap
 ✔ | F W S  OK | Context
 ✔ |         1 | shinytest2-datasetApp [17.3s]                                                                    
-⠼ |         5 | shinytest2-gghistApp                                                                               
+⠼ |         5 | shinytest2-ggHistApp                                                                               
   wt1   wt2   wt3   wt4   wt5   wt6   wt7   wt8   wt9  wt10  wt11  wt12  wt13 
 2.620 2.875 2.320 3.215 3.440 3.460 3.570 3.190 3.150 3.440 3.440 4.070 3.730 
  wt14  wt15  wt16  wt17  wt18  wt19  wt20  wt21  wt22  wt23  wt24  wt25  wt26 
 3.780 5.250 5.424 5.345 2.200 1.615 1.835 2.465 3.520 3.435 3.840 3.845 1.935 
  wt27  wt28  wt29  wt30  wt31  wt32 
 2.140 1.513 3.170 2.770 3.570 2.780 
-⠇ |         9 | shinytest2-gghistApp                                                                              
+⠇ |         9 | shinytest2-ggHistApp                                                                              
  UrbanPop1  UrbanPop2  UrbanPop3  UrbanPop4  UrbanPop5  UrbanPop6  UrbanPop7 
         58         48         80         50         91         78         77 
  UrbanPop8  UrbanPop9 UrbanPop10 UrbanPop11 UrbanPop12 UrbanPop13 UrbanPop14 
@@ -75,7 +75,7 @@ UrbanPop43 UrbanPop44 UrbanPop45 UrbanPop46 UrbanPop47 UrbanPop48 UrbanPop49
         80         80         32         63         73         39         66 
 UrbanPop50 
         60 
-✔ |        10 | shinytest2-gghistApp [13.2s]
+✔ |        10 | shinytest2-ggHistApp [13.2s]
 ✔ |         2 | shinytest2-selectVarApp [10.5s]                                                                  
 ✔ |         1 | shinytest2 [5.0s]                                                                                
 

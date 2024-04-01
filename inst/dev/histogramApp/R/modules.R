@@ -1,11 +1,10 @@
+# dataset module ----
 datasetInput <- function(id, filter = NULL) {
   names <- ls("package:datasets")
-
   if (!is.null(filter)) {
     data <- lapply(names, get, "package:datasets")
     names <- names[vapply(data, filter, logical(1))]
   }
-
   selectInput(
     NS(id, "dataset"),
     "Pick a dataset",
@@ -16,8 +15,7 @@ datasetServer <- function(id) {
     reactive(get(input$dataset, "package:datasets"))
   })
 }
-
-
+# selectVar module ----
 selectVarInput <- function(id) {
   selectInput(
     NS(id, "var"),
@@ -26,19 +24,15 @@ selectVarInput <- function(id) {
   )
 }
 selectVarServer <- function(id, data, filter = is.numeric) {
-
   stopifnot(is.reactive(data))
   stopifnot(!is.reactive(filter))
-
   moduleServer(id, function(input, output, session) {
-
     observe({
       updateSelectInput(
         session, "var",
         choices = find_vars(data(), filter))
     }) |>
       bindEvent(data())
-
     return(
       reactive({
         if (input$var %in% names(data())) {
@@ -49,16 +43,15 @@ selectVarServer <- function(id, data, filter = is.numeric) {
       }) |>
       bindEvent(input$var)
     )
-
   })
 }
-
+# find vars utility function ----
 find_vars <- function(data, filter = is.vector) {
   stopifnot(is.data.frame(data))
   stopifnot(is.function(filter))
   names(data)[vapply(data, filter, logical(1))]
 }
-
+# histogram module ----
 histogramOutput <- function(id) {
   tagList(
     numericInput(

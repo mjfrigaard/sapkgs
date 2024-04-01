@@ -1,3 +1,7 @@
+library(shiny)
+
+options(shiny.testmode = TRUE)
+
 histogramApp <- function() {
   ui <- fluidPage(
     sidebarLayout(
@@ -23,7 +27,10 @@ histogramApp <- function() {
                               all.names = TRUE)
       print(x)
     })
-
+    exportTestValues(
+        data = data,
+        x = x
+      )
   }
   shinyApp(ui, server)
 }

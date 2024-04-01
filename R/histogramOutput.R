@@ -6,10 +6,9 @@
 #' @param id shiny module ui id
 #'
 #' @return shiny ui module
-#' @export histogramOutput
+#' 
+#' @export
 #'
-#' @importFrom shiny tagList numericInput
-#' @importFrom shiny NS plotOutput verbatimTextOutput
 histogramOutput <- function(id) {
   tagList(
     numericInput(

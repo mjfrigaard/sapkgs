@@ -8,8 +8,6 @@
 #' @return shiny server module
 #' @export histogramServer
 #'
-#' @importFrom shiny tagList numericInput NS plotOutput renderPlot req
-#' @importFrom purrr as_vector
 #'
 histogramServer <- function(id, x, title = reactive("Histogram")) {
   stopifnot(is.reactive(x))

@@ -1,11 +1,13 @@
 library(shiny)
+
 options(shiny.testmode = TRUE)
-gghistApp <- function() {
+
+ggHistApp <- function() {
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
-        datasetInput("data", is.data.frame),
-        selectVarInput("var"),
+        mstsap::datasetInput("data", is.data.frame),
+        mstsap::selectVarInput("var"),
       ),
       mainPanel(
         histogramOutput("hist"),
@@ -17,20 +19,23 @@ gghistApp <- function() {
 
   server <- function(input, output, session) {
 
-    data <- datasetServer("data")
-
-    x <- selectVarServer("var", data)
-
-    gghistServer("hist", x)
+    data <- mstsap::datasetServer("data")
+    x <- ggSelectVarServer("var", data)
+    ggHistServer("hist", x)
 
     output$vals <- renderPrint({
       x <- reactiveValuesToList(input,
                           all.names = TRUE)
       print(x, width = 30, max.levels = NULL)
       }, width = 30)
+    
+    exportTestValues(
+      x = x(),
+      data = data()
+    )
 
   }
 
   shinyApp(ui, server)
 }
-gghistApp()
+ggHistApp()
