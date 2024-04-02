@@ -10,7 +10,6 @@ test_that("{shinytest2} recording: histogramApp", {
   app$set_inputs(`var-var` = "privileges")
   app$set_inputs(`hist-bins` = 15)
   app_values <- app$get_values()
-  names(app_values$export)
   expect_equal(
     rlang::is_function(app_values$export$data),
     shiny::is.reactive(app_values$export$data))
@@ -18,7 +17,6 @@ test_that("{shinytest2} recording: histogramApp", {
     rlang::is_function(app_values$export$x),
     shiny::is.reactive(app_values$export$x))
   app_logs <- app$get_logs()
-  str(app_logs)
   ds_msg <- subset(app_logs,
                    message == "Setting inputs: 'data-dataset'")
   expect_equal(nrow(ds_msg), 1L)

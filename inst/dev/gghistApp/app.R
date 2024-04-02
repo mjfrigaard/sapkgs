@@ -2,6 +2,8 @@ library(shiny)
 
 options(shiny.testmode = TRUE)
 
+source("R/modules.R")
+
 ggHistApp <- function() {
   ui <- fluidPage(
     sidebarLayout(
@@ -31,7 +33,9 @@ ggHistApp <- function() {
     
     exportTestValues(
       x = x(),
-      data = data()
+      data = data(),
+      react_x = x,
+      react_data = data
     )
 
   }

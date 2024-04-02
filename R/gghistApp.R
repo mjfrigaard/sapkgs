@@ -39,6 +39,7 @@
 #' handling data upload, variable  selection,and histogram rendering.
 #'
 ggHistApp <- function() {
+  
   ui <- fluidPage(
     sidebarLayout(
       sidebarPanel(
@@ -64,11 +65,6 @@ ggHistApp <- function() {
                           all.names = TRUE)
       print(x, width = 30, max.levels = NULL)
       }, width = 30)
-    
-    exportTestValues(
-      x = x(),
-      data = data()
-    )
 
   }
 

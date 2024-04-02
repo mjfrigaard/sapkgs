@@ -30,42 +30,39 @@
 #'
 #' @export
 ggHistServer <- function(id, x, title = reactive("Histogram")) {
-
-    stopifnot(is.reactive(x))
-    stopifnot(is.reactive(title))
+  
+  stopifnot(is.reactive(x))
+  stopifnot(is.reactive(title))
 
   moduleServer(id, function(input, output, session) {
-
-    plot_obj <- reactive({
-                  req(x())
-                  purrr::as_vector(x())
-                  })
-
-    output$hist <- renderPlot({
-      req(x())
+    
+    gg2_plot <- reactive({
       ggplot2::ggplot(
-        mapping =
-          ggplot2::aes(plot_obj())) +
+          mapping =
+            ggplot2::aes(purrr::as_vector(x()))
+        ) +
           ggplot2::geom_histogram(bins = input$bins) +
           ggplot2::labs(
             title = paste0(title(), " [bins = ", input$bins, "]"),
             y = "Count",
-            x = names(x())) +
+            x = names(x())
+          ) +
           ggplot2::theme_minimal()
-    }, res = 124) |>
-      bindEvent(c(x(), input$bins),
-        ignoreNULL = TRUE)
+    })
 
+      
+    observe({
+      output$hist <- renderPlot({gg2_plot()}, res = 124)
+    }) |> 
+      bindEvent(c(x(), title(), input$bins))
+    
     output$vals <- renderPrint({
-      x <- reactiveValuesToList(input,
-                          all.names = TRUE)
-      print(x, width = 30, max.levels = NULL)
-      }, width = 30)
-
-   exportTestValues(
-      x = x(),
-      plot_obj = plot_obj()
-    )
-
+        x <- reactiveValuesToList(input,
+          all.names = TRUE
+        )
+        print(x, width = 30, max.levels = NULL)},
+      width = 30)
+    
   })
+  
 }
